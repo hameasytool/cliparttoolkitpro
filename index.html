@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clipart ToolKit Pro｜Etsyで売るための全部が、これ1つに。</title>
+<meta name="description" content="Etsyクリップアート販売に特化した自動化ツール。余白カット・背景透過・商品画像・モックアップ・納品PDFまで、1つの画面で完結。月1,480円から。">
+<meta property="og:title" content="Clipart ToolKit Pro｜Etsyで売るための全部が、これ1つに。">
+<meta property="og:description" content="KittlもCanvaもUpscaylも。全部まとめて、月1,480円から">
+<meta property="og:image" content="images/05.jpg">
+<meta property="og:type" content="product">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        #fdf2f1;
+    --surface:   #fffbfa;
+    --ink:       #5c4340;
+    --ink-soft:  #a3888a;
+    --brand:     #e3a0ac;
+    --brand-deep:#c96b85;
+    --accent:    #e3a6a0;
+    --cream:     #fce3e6;
+    --line:      #f5d6da;
+    --marker:    #fbd6de;
+    --gold:      #c9a15a;
+    --radius:    20px;
+    --shadow:    0 8px 30px rgba(201,107,133,.18);
+    --maxw:      680px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic",-apple-system,system-ui,sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.8;
+    font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  img,video{max-width:100%;height:auto;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  section{padding:48px 0}
+  h2{font-size:24px;line-height:1.5;text-align:center;margin-bottom:8px;font-weight:700;color:var(--ink)}
+  h2 .sub{display:block;font-size:13px;color:var(--brand-deep);letter-spacing:.1em;margin-bottom:6px;font-weight:700}
+  .lead{text-align:center;color:var(--ink-soft);margin-bottom:32px}
+  p+p{margin-top:1em}
+
+  /* 見出しの一部にマーカーを引いたような強調 */
+  .marker{position:relative;display:inline-block;white-space:nowrap}
+  .marker::before{
+    content:"";position:absolute;left:-4px;right:-4px;bottom:2px;height:38%;
+    background:var(--marker);z-index:0;border-radius:3px;
+  }
+  .marker span{position:relative;z-index:1}
+
+  .cta{
+    display:flex;align-items:center;
+    width:100%;max-width:420px;margin:24px auto 0;
+    padding:16px 34px;text-align:left;text-decoration:none;justify-content:center;
+    background:linear-gradient(160deg, #faf0d2, var(--gold,#c9a15a) 85%);
+    color:#5c4030;font-weight:800;font-size:18px;
+    border-radius:999px;border:none;
+    box-shadow:0 6px 0 0 #a9793a, 0 14px 30px rgba(169,127,58,.35);
+    position:relative;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .cta::before{
+    content:"✦";position:absolute;top:16px;left:14px;color:#fff;
+    font-size:18px;text-shadow:0 0 6px rgba(255,255,255,.9);
+  }
+  .cta > span{flex:none}
+  .cta:hover{transform:translateY(3px);box-shadow:0 3px 0 0 #a9793a, 0 8px 20px rgba(169,127,58,.4)}
+  .cta small{display:block;font-weight:400;font-size:11px;opacity:.7;margin-top:2px;color:#5c4030}
+
+  .cta.cta-secondary{
+    background:linear-gradient(160deg, #ffffff, #fbd7e2 85%);
+    box-shadow:0 6px 0 0 #eda6bc, 0 14px 30px rgba(230,150,180,.3);
+  }
+  .cta.cta-secondary::before{content:none}
+  .cta.cta-secondary:hover{box-shadow:0 3px 0 0 #eda6bc, 0 8px 20px rgba(230,150,180,.35)}
+
+  /* ===== ヒーロー ===== */
+  .hero{
+    background:var(--bg);
+    text-align:center;padding:48px 0 40px;position:relative;overflow:hidden;
+  }
+  .hero .badge{
+    display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--brand-deep);
+    border:1px solid var(--line);border-radius:999px;
+    padding:6px 16px;font-size:13px;font-weight:700;margin-bottom:20px;
+  }
+  .hero h1{font-weight:700;font-size:28px;line-height:1.6;margin-bottom:16px;color:var(--ink)}
+  .hero .hero-sub{color:var(--ink);opacity:.75;margin-bottom:28px;font-size:15px}
+  .hero-video{
+    border-radius:var(--radius);box-shadow:var(--shadow);margin:0 auto 8px;
+    width:100%;max-width:440px;
+  }
+  .hero .with{font-size:13px;color:var(--ink);opacity:.7;margin-top:2px;margin-bottom:24px}
+  .hero .with strong{color:var(--ink);font-weight:400}
+  .hero-badge-logo{width:88px;margin:0 auto 12px}
+
+  /* ===== Canva画像スタック（HERO〜PROOF/USP） ===== */
+  .slide-stack{max-width:var(--maxw);margin:0 auto;background:#fff}
+  .slide-stack .slide{position:relative;line-height:0}
+  .slide-stack .slide img{width:100%;display:block}
+  /* このブロックだけ、ふわっと＋少し拡大しながら出現（目を引く演出） */
+  .slide-stack .reveal{
+    opacity:0;transform:translateY(34px) scale(.97);
+    transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);
+  }
+  .slide-stack .reveal.is-in{opacity:1;transform:none}
+  /* HEROと世界地図の上に、常時きらめく星の演出 */
+  .slide-stack .twinkle{position:absolute;color:#fff;text-shadow:0 0 6px rgba(169,127,58,.5);
+    font-size:22px;animation:twinkle 2.6s ease-in-out infinite;pointer-events:none}
+  .slide-stack .twinkle.t1{top:6%;right:10%;animation-delay:0s}
+  .slide-stack .twinkle.t2{top:14%;left:8%;font-size:16px;animation-delay:.6s}
+  .slide-stack .twinkle.t3{top:34%;right:6%;font-size:14px;animation-delay:1.2s}
+  @keyframes twinkle{
+    0%,100%{opacity:.25;transform:scale(.85)}
+    50%{opacity:1;transform:scale(1.15)}
+  }
+  @media(prefers-reduced-motion: reduce){
+    .slide-stack .twinkle{animation:none;opacity:.7}
+  }
+
+  /* ===== Etsyという場所 ===== */
+  .whyetsy-box{
+    max-width:520px;margin:0 auto 20px;background:var(--cream);
+    border:1.5px dashed var(--brand);border-radius:var(--radius);
+    padding:20px 22px;text-align:center;font-size:14px;
+  }
+  .whyetsy-stats{
+    display:flex;gap:12px;max-width:560px;margin:0 auto 20px;flex-wrap:wrap;
+  }
+  .whyetsy-stats .stat{
+    flex:1;min-width:140px;text-align:center;
+  }
+  .whyetsy-stats .stat strong{display:block;font-size:22px;color:var(--brand-deep)}
+  .whyetsy-stats .stat span{font-size:13px;color:var(--ink-soft)}
+  .whyetsy-note{max-width:480px;margin:0 auto;text-align:center;font-size:14px;color:var(--ink-soft)}
+
+  /* ===== 共感（悩み） ===== */
+  .pain{background:var(--surface);position:relative}
+  .pain-char{width:110px;margin:0 auto 6px}
+
+  /* ===== できること（グリッド） ===== */
+  .grid{display:grid;grid-template-columns:repeat(1,1fr);gap:14px;margin-top:8px}
+  .card{padding:18px 16px 22px}
+  .card img{border-radius:12px;margin-bottom:10px}
+  .card-ph{
+    background:var(--cream);border:1.5px dashed var(--brand);border-radius:12px;
+    margin-bottom:10px;padding:28px 10px;font-size:28px;color:var(--ink-soft);
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+  }
+  .card-ph span{font-size:12px;font-weight:700}
+  .card h3{font-size:16px;margin-bottom:4px}
+  .card p{font-size:13px;color:var(--ink-soft)}
+  .card .flow{font-size:12px;color:var(--brand-deep);margin-top:8px;font-weight:700}
+  .grid-note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:14px}
+
+  /* ===== 料金比較（今より安くなる） ===== */
+  .compare{background:var(--surface)}
+  .cmp-box{max-width:460px;margin:0 auto}
+  .cmp-now{
+    background:#fbeff0;border-radius:var(--radius);padding:20px 22px;
+  }
+  .cmp-now h3{font-size:14px;color:var(--ink-soft);text-align:center;margin-bottom:12px;font-weight:700}
+  .cmp-row{display:flex;justify-content:space-between;font-size:14px;color:var(--ink-soft);padding:5px 0}
+  .cmp-total{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-top:1px solid #f0d5d8;margin-top:10px;padding-top:12px;
+  }
+  .cmp-total span{font-size:14px;color:var(--ink-soft);font-weight:700}
+  .cmp-total strong{font-size:26px;color:#a3888a;font-weight:800}
+  .cmp-arrow{text-align:center;font-size:26px;color:var(--brand);padding:12px 0;line-height:1}
+  .cmp-char{width:90px;margin:0 auto 4px}
+  .cmp-new{
+    background:var(--cream);border:2px dashed var(--brand);
+    border-radius:var(--radius);padding:22px;text-align:center;
+  }
+  .cmp-new h3{font-size:14px;color:var(--brand-deep);margin-bottom:6px;font-weight:700}
+  .cmp-new strong{display:block;font-size:38px;color:var(--brand-deep);font-weight:800;line-height:1.2}
+  .cmp-new strong small{font-size:16px}
+  .cmp-msg{
+    max-width:460px;margin:22px auto 0;background:var(--cream);
+    border-radius:16px;padding:18px 20px;font-size:14px;
+  }
+  .cmp-msg strong{color:var(--brand-deep)}
+
+  /* ===== ベネフィット ===== */
+  .benefit{background:var(--cream)}
+  .benefit-char{width:100px;margin:0 auto 4px}
+  .benefit .row{
+    display:flex;gap:14px;align-items:flex-start;
+    background:var(--surface);border-radius:16px;padding:18px;margin-bottom:14px;
+  }
+  .benefit h3{font-size:16px;margin-bottom:2px}
+  .benefit p{font-size:14px;color:var(--ink-soft)}
+
+  /* ===== 使い方（3ステップ） ===== */
+  .steps{counter-reset:step}
+  .step{position:relative;padding:6px 0 6px 56px;margin-bottom:20px}
+  .step::before{
+    counter-increment:step;content:counter(step);
+    position:absolute;left:0;top:0;width:40px;height:40px;
+    background:var(--brand);color:#fff;border-radius:50%;
+    display:grid;place-items:center;font-weight:700;
+  }
+  .step h3{font-size:16px;margin-bottom:2px}
+  .step p{font-size:14px;color:var(--ink-soft)}
+
+  /* ===== 開発者について ===== */
+  .about{background:var(--surface);text-align:center}
+  .about-illust{width:220px;max-width:70%;margin:0 auto 18px}
+  .about p{max-width:500px;margin:0 auto;color:var(--ink-soft);font-size:14px}
+  .about p+p{margin-top:1em}
+  .about .pop{
+    display:inline-block;background:var(--cream);color:var(--brand-deep);
+    font-weight:700;border-radius:999px;padding:6px 18px;font-size:14px;margin-top:18px;
+  }
+
+  /* ===== 価格（3プラン） ===== */
+  .price{background:linear-gradient(180deg,var(--bg),var(--cream))}
+  .price-char{width:110px;margin:0 auto 4px}
+  .plans{display:grid;grid-template-columns:1fr;gap:14px;max-width:460px;margin:0 auto}
+  .plan-card{padding:22px 20px 26px;position:relative}
+  .plan-card.rec{border-color:var(--brand-deep);border-width:2px;box-shadow:0 8px 24px rgba(201,107,133,.22)}
+  .plan-tag{
+    position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+    background:var(--brand-deep);color:#fff;white-space:nowrap;
+    font-size:12px;font-weight:700;border-radius:999px;padding:3px 14px;
+  }
+  .plan-name{font-size:15px;font-weight:700;color:var(--brand-deep);margin-bottom:6px}
+  .plan-price{font-size:32px;font-weight:800;color:var(--ink);line-height:1.2}
+  .plan-card.rec .plan-price{color:var(--brand-deep)}
+  .plan-price small{font-size:14px;font-weight:700}
+  .plan-vol{font-size:14px;color:var(--ink-soft);margin-top:6px}
+  .plan-for{font-size:13px;color:var(--ink-soft);margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+  .allplan{
+    max-width:460px;margin:22px auto 0;background:var(--surface);
+    border-radius:16px;padding:20px;font-size:14px;
+  }
+  .allplan h3{font-size:15px;text-align:center;color:var(--brand-deep);margin-bottom:12px}
+  .allplan ul{list-style:none}
+  .allplan li{padding:5px 0 5px 26px;position:relative;font-size:14px}
+  .allplan li::before{content:"✓";position:absolute;left:4px;color:var(--brand-deep);font-weight:700}
+  .price-note{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:18px}
+  .soon{
+    display:block;width:100%;max-width:420px;margin:24px auto 0;
+    padding:18px 24px;text-align:center;
+    background:var(--surface);border:2px dashed var(--brand);color:var(--brand-deep);
+    font-weight:700;font-size:17px;border-radius:999px;
+  }
+  .soon small{display:block;font-weight:400;font-size:12px;color:var(--ink-soft);margin-top:2px}
+
+  /* ===== FAQ ===== */
+  .faq details{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:14px;padding:4px 18px;margin-bottom:10px;
+  }
+  .faq summary{
+    cursor:pointer;padding:14px 0;font-weight:700;font-size:15px;
+    list-style:none;position:relative;padding-right:28px;
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"＋";position:absolute;right:0;color:var(--brand-deep)}
+  .faq details[open] summary::after{content:"−"}
+  .faq details p{padding:0 0 16px;font-size:14px;color:var(--ink-soft)}
+
+  /* ===== フッター ===== */
+  footer{background:var(--ink);color:#fff;text-align:center;padding:36px 20px;font-size:13px}
+  footer a{color:#fff;text-decoration:underline;margin:0 8px;display:inline-block}
+  footer .license{max-width:520px;margin:0 auto 16px;color:#f0d9dc;line-height:1.8;font-size:12px;text-align:left}
+  footer .kuma-note{color:#f5c9d3;font-size:13px;margin-bottom:18px}
+
+  /* ===== シンプルなピンクカード ===== */
+  .pink-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 18px;text-align:center;box-shadow:0 4px 16px rgba(201,107,133,.1);
+  }
+  .pink-card.pink-solid{background:var(--cream);border-color:var(--brand)}
+
+  /* ===== INSIGHT の飾り ===== */
+  .insight-flower{width:120px;margin:0 auto 10px;opacity:.92}
+  .insight-divider{margin:26px auto;text-align:center}
+  .insight-divider img{width:150px;margin:0 auto;opacity:.85}
+
+  /* ===== クリップアートの小さな飾り（香りづけ） ===== */
+  .flourish{text-align:center;margin:0 auto 8px}
+  .flourish img{margin:0 auto;width:64px;opacity:.9;box-shadow:none;border-radius:0;max-width:64px}
+  .accent-corner{box-shadow:none;border-radius:0}
+
+  /* ===== 花柄の背景（薄く重ねる） ===== */
+  .floral-bg{position:relative}
+  .floral-bg::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:url("images/warm/floral-pattern.jpg") repeat;background-size:280px;
+    opacity:.16;pointer-events:none;
+  }
+  .floral-bg > .wrap{position:relative;z-index:1}
+  .floral-bg .hero-illust{position:relative;z-index:1}
+
+  /* HEROイラストを囲む小さな花フレーム */
+  .hero-frame{position:absolute;inset:-26px;z-index:0;pointer-events:none}
+  .hero-frame img{width:100%;height:100%;object-fit:contain}
+  .about-frame-wrap{position:relative;width:220px;max-width:70%;margin:0 auto 18px}
+  .about-frame-wrap .frame-deco{position:absolute;inset:-22px;z-index:0;pointer-events:none}
+  .about-frame-wrap .frame-deco img{width:100%;height:100%;object-fit:contain}
+  .about-frame-wrap .about-illust{position:relative;z-index:1;width:100%;margin:0}
+
+  .mini-accent{width:44px;opacity:.9;margin:0 auto 4px}
+
+  /* ===== ABOUT ETSY 追加ビジュアル ===== */
+  .globe-img{width:220px;max-width:60%;margin:0 auto 14px}
+  .teacat-row{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0 6px}
+  .teacat-row img{width:110px}
+
+  /* ===== PAIN（イラスト＋文章の流れ） ===== */
+  .pain-block{max-width:480px;margin:0 auto 44px;text-align:center}
+  .pain-block img{width:84px;margin:0 auto 14px}
+  .pain-block h3{font-size:17px;line-height:1.6;margin-bottom:10px;color:var(--ink)}
+  .pain-block p{font-size:14px;color:var(--ink-soft);line-height:1.75}
+  .pain-block p.note{margin-top:8px}
+
+  /* ===== SOLUTION（3本柱） ===== */
+  .solution-ph{
+    background:#e9e5df;border-radius:16px;padding:34px 14px;text-align:center;
+    color:var(--ink-soft);font-size:13px;font-weight:700;margin:10px 0 22px;
+  }
+  .pillars{display:flex;flex-direction:column;gap:22px;max-width:400px;margin:0 auto}
+  .pillar{text-align:center}
+  .pillar-num{
+    display:inline-block;color:var(--brand-deep);font-weight:800;font-size:13px;
+    letter-spacing:.15em;margin-bottom:4px;
+  }
+  .pillar h3{font-size:17px;color:var(--ink)}
+  .pillar p{font-size:13px;color:var(--ink-soft);margin-top:4px}
+
+  /* ===== PROOF/USP プロフィール＆バッジ ===== */
+  .profile-pair{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;
+    max-width:560px;margin:0 auto 26px;
+  }
+  .profile-item{text-align:center}
+  .profile-item img{width:96px;height:96px;border-radius:50%;margin:0 auto 10px;box-shadow:var(--shadow);transition:transform .15s ease,opacity .15s ease}
+  .profile-item a{display:inline-block}
+  .profile-item a:hover img{transform:translateY(-2px);opacity:.9}
+  .profile-item h3{font-size:15px;font-weight:700;color:var(--brand-deep);margin-bottom:6px}
+  .profile-item p{font-size:12.5px;color:var(--ink-soft);line-height:1.75;text-align:left}
+
+  .proof-badges{
+    display:flex;flex-direction:column;align-items:stretch;gap:10px;
+    max-width:380px;margin:0 auto 26px;
+  }
+  .proof-badge{
+    display:flex;align-items:center;gap:10px;position:relative;
+    background:url("images/final/badge-bg.png") no-repeat center/100% 100%;
+    padding:14px 18px 14px 40px;font-size:14px;font-weight:700;color:var(--ink);
+    min-height:52px;
+  }
+  .proof-badge::before{
+    content:"✓";position:absolute;left:18px;color:var(--brand-deep);font-weight:800;font-size:16px;
+  }
+
+  .garland-row{text-align:center;margin:20px 0}
+  .garland-row img{margin:0 auto}
+
+  @media(min-width:600px){
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .hero h1{font-size:32px}
+    .plans{grid-template-columns:repeat(3,1fr);max-width:100%}
+    .plan-price{font-size:26px}
+  }
+
+  /* ===== スクロールでふわっと出現 ===== */
+  .reveal{
+    opacity:0;transform:translateY(26px);
+    transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal.is-in{opacity:1;transform:none}
+  .reveal-stagger > *{
+    opacity:0;transform:translateY(26px);
+    transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal-stagger.is-in > *{opacity:1;transform:none}
+  .reveal-stagger > *:nth-child(1){transition-delay:0ms}
+  .reveal-stagger > *:nth-child(2){transition-delay:90ms}
+  .reveal-stagger > *:nth-child(3){transition-delay:180ms}
+  .reveal-stagger > *:nth-child(4){transition-delay:270ms}
+  .reveal-stagger > *:nth-child(5){transition-delay:360ms}
+  .reveal-stagger > *:nth-child(6){transition-delay:450ms}
+  @media(prefers-reduced-motion: reduce){
+    .reveal,.reveal-stagger > *{opacity:1!important;transform:none!important;transition:none!important}
+  }
+
+  /* ===== ヘッダー（固定ナビ） ===== */
+  body{padding-top:60px}
+  .site-nav{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    background:rgba(253,245,232,.92);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);height:60px;
+  }
+  .site-nav .wrap{
+    max-width:var(--maxw);height:60px;margin:0 auto;padding:0 16px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .site-nav .brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-weight:700;font-size:14px}
+  .site-nav .brand img{width:28px;height:28px}
+  .site-nav .menu{display:none;list-style:none;gap:22px;align-items:center}
+  .site-nav .menu a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:700}
+  .site-nav .menu a:hover{color:var(--brand-deep)}
+  .site-nav .menu .nav-cta{
+    background:var(--brand-deep);color:#fff!important;padding:8px 18px;border-radius:999px;font-size:13px;
+  }
+  .nav-toggle{
+    display:flex;flex-direction:column;justify-content:center;gap:5px;
+    width:34px;height:34px;background:none;border:none;cursor:pointer;padding:0;
+  }
+  .nav-toggle span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+  .site-nav.open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .site-nav.open .nav-toggle span:nth-child(2){opacity:0}
+  .site-nav.open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .mobile-menu{
+    position:fixed;top:60px;left:0;right:0;background:var(--surface);
+    border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(90,70,50,.1);
+    max-height:0;overflow:hidden;transition:max-height .3s ease;z-index:199;
+  }
+  .site-nav.open + .mobile-menu{max-height:320px}
+  .mobile-menu ul{list-style:none;padding:8px 20px 16px}
+  .mobile-menu li{border-bottom:1px solid var(--line)}
+  .mobile-menu a{display:block;padding:14px 4px;color:var(--ink);text-decoration:none;font-weight:700;font-size:15px}
+  .mobile-menu .nav-cta{color:var(--brand-deep)}
+
+  @media(min-width:640px){
+    .site-nav .menu{display:flex}
+    .nav-toggle{display:none}
+    .mobile-menu{display:none}
+  }
+
+  /* ===== 下に張り付く利用開始ボタン ===== */
+  .sticky-cta{
+    position:fixed;left:0;right:0;bottom:0;z-index:150;
+    background:rgba(255,250,241,.95);backdrop-filter:blur(6px);
+    border-top:1px solid var(--line);padding:10px 16px;
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    box-shadow:0 -6px 20px rgba(90,70,50,.08);
+    transform:translateY(100%);transition:transform .3s ease;
+  }
+  .sticky-cta.show{transform:translateY(0)}
+  .sticky-cta a{
+    background:var(--brand-deep);color:#fff;text-decoration:none;font-weight:700;font-size:14px;
+    padding:12px 26px;border-radius:999px;white-space:nowrap;
+  }
+  .sticky-cta span{font-size:12px;color:var(--ink-soft)}
+  @media(min-width:640px){ .sticky-cta{display:none} }
+
+  /* ===== ロード画面 ===== */
+  #loader{
+    position:fixed;inset:0;z-index:999;background:var(--bg);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+    transition:opacity .5s ease,visibility .5s ease;
+  }
+  #loader img{width:120px}
+  #loader .dots{display:flex;gap:8px}
+  #loader .dots span{
+    width:9px;height:9px;border-radius:50%;background:var(--brand);
+    animation:loaderBounce 1.1s ease-in-out infinite;
+  }
+  #loader .dots span:nth-child(2){animation-delay:.15s}
+  #loader .dots span:nth-child(3){animation-delay:.3s}
+  @keyframes loaderBounce{
+    0%,80%,100%{transform:translateY(0);opacity:.5}
+    40%{transform:translateY(-8px);opacity:1}
+  }
+  #loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+  @media(prefers-reduced-motion: reduce){
+    #loader .dots span{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ロード画面 -->
+<div id="loader">
+  <img src="images/final/hamu-mia-badge.png" alt="Clipart ToolKit Pro">
+  <div class="dots"><span></span><span></span><span></span></div>
+</div>
+
+<!-- ヘッダー -->
+<nav class="site-nav" id="siteNav">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="images/final/hamu-mia-badge.png" alt="">Clipart ToolKit Pro</a>
+    <ul class="menu">
+      <li><a href="#contents">できること</a></li>
+      <li><a href="#buy">料金</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a class="nav-cta" href="#buy">利用を開始する</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="メニュー"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#contents">できること</a></li>
+    <li><a href="#buy">料金</a></li>
+    <li><a href="#faq">よくあるご質問</a></li>
+    <li><a class="nav-cta" href="#buy">利用を開始する</a></li>
+  </ul>
+</div>
+
+<!-- 下に張り付く利用開始ボタン -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#buy">利用を開始する</a>
+</div>
+
+<!-- ①ヒーロー -->
+<header class="hero floral-bg">
+  <div class="wrap">
+    <img class="hero-badge-logo reveal" src="images/final/hamu-mia-badge.png" alt="Hamu & Mia collaboration">
+    <span class="badge">"日本初" Etsyクリップアート全自動化ツール</span>
+    <video class="hero-video" autoplay muted loop playsinline poster="images/hero-loop-poster.jpg" aria-label="ハムスターたちが作業しているところに黒猫が魔法をかけて、自動で仕上げてくれる様子のアニメーション">
+      <source src="images/hero-loop.mp4" type="video/mp4">
+    </video>
+    <h1>Etsyのクリップアート作業を、<br><span class="marker"><span>まるごと自動化。</span></span><br>実際に売っている人が、開発しました。</h1>
+    <p class="hero-sub">売れている理由まで、研究しました。</p>
+    <p class="with">はむ × <strong>mia</strong>が共同開発したツールです</p>
+    <a class="cta" href="#buy"><span>利用を開始する</span></a>
+  </div>
+</header>
+
+<!-- ①.5 Etsyという場所 -->
+<section class="whyetsy floral-bg">
+  <div class="wrap">
+    <h2 class="reveal"><span class="sub">ABOUT ETSY</span>Etsyって、知っていますか？</h2>
+    <p class="lead reveal">世界中の人に、自分の作った画像を売れるマーケットです。</p>
+    <img class="globe-img reveal" src="images/final/globe.png" alt="">
+    <div class="whyetsy-stats reveal-stagger">
+      <div class="stat pink-card"><strong>119億ドル</strong><span>年間流通総額（1兆円超）</span></div>
+      <div class="stat pink-card pink-solid"><strong>8,650万人</strong><span>世界のアクティブバイヤー</span></div>
+      <div class="stat pink-card"><strong>560万人</strong><span>出店しているセラー数</span></div>
+    </div>
+    <p class="whyetsy-note reveal" style="font-size:12px;margin-bottom:24px">出典：Etsy, Inc. 2025年通期決算（investors.etsy.com）</p>
+    <div class="teacat-row reveal"><img src="images/final/teacat.png" alt=""></div>
+    <div class="whyetsy-box reveal">
+      <p>Etsyは、日本からの新規出店の受付を一時停止していた時期がありました。再開されたのは、2023年11月。</p>
+      <p style="margin-top:10px"><strong>つまり、日本人セラーの参入は、まだ始まったばかりです。</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ②共感（PAIN） -->
+<section class="pain floral-bg">
+  <div class="wrap">
+    <h2 class="reveal"><span class="sub">こんなお悩みありませんか？</span>もしかして、こんな状態になっていませんか？</h2>
+
+    <div class="pain-block reveal">
+      <img src="images/final/poodle.png" alt="">
+      <h3>絵を作るのは楽しい。<br>でも、商品として仕上げるまでが長い。</h3>
+      <p>背景の透過、解像度UP、サイズ調整、色味調整、並び替え。サムネイル、素材一覧、モックアップ、動画作成、納品PDF……</p>
+      <p class="note">気づけば、絵を作った時間より長くかかっている。</p>
+    </div>
+
+    <div class="pain-block reveal">
+      <img src="images/final/teddy-bear.png" alt="">
+      <h3>ツールがバラバラで、<br>何を選べばいいか分からない</h3>
+      <p class="note">Claude、Gemini、ChatGPT、Midjourney、Kittl、Canva……人によって使うツールも違うし、「結局どれが正解なの？」というところから迷ってしまう。</p>
+    </div>
+
+    <div class="pain-block reveal">
+      <img src="images/final/white-cat.png" alt="">
+      <h3>売れてる商品を研究したいけど、<br>時間がない</h3>
+      <p class="note">本当は、実際に売れている商品を参考にしたい。でも、探して、分析して、自分の商品に落とし込むにはまとまった時間がいる。気づけば後回しになっている。</p>
+    </div>
+
+    <div class="pain-block reveal">
+      <img src="images/final/frog.png" alt="">
+      <h3>これ、Etsyで通用するのか<br>自信が持てない</h3>
+      <p class="note">解像度は大丈夫？　サイズは？　商品紹介画像ってこれでいいの？　「何が正解か分からないまま出品する」という不安を抱えたことはありませんか。</p>
+    </div>
+
+    <a class="cta cta-secondary reveal" href="#insight" style="max-width:280px;margin:28px auto 0"><span>詳しく見てみる</span></a>
+  </div>
+</section>
+
+<!-- INSIGHT -->
+<section class="floral-bg" id="insight">
+  <div class="wrap">
+    <img class="insight-flower reveal" src="images/final/flower-white-rose.png" alt="">
+    <div class="reveal" style="max-width:520px;margin:0 auto;text-align:center;color:var(--ink-soft)">
+      <p style="font-size:17px;color:var(--ink);font-weight:700">正直なところ、作業が多くて面倒。</p>
+      <p style="margin-top:1.2em">それだけじゃなくて、商品化に時間がかかって、出品までたどり着けない。</p>
+      <p style="margin-top:1.2em">しかも、何が正解か分からないまま、「これでいいのかな」と不安なまま出している。</p>
+      <p style="margin-top:1.2em"><strong style="color:var(--ink)">本当は、もっと商品を作りたいのに。<br>時間と、作業と、判断に、邪魔されている。</strong></p>
+      <div class="insight-divider reveal"><img src="images/final/lavender.png" alt=""></div>
+      <p>パソコンに向かって同じ作業を延々とするために、Etsyを始めたわけじゃないはずです。</p>
+      <p style="margin-top:1.2em"><strong style="color:var(--brand-deep)">本当は、面倒な作業ではなく、新しい商品を考える時間に使いたい。</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION OVERVIEW -->
+<section class="floral-bg">
+  <div class="wrap">
+    <h2 class="reveal">Clipart ToolKit Proは、<br>単純な自動化ツールではありません</h2>
+    <video class="reveal" autoplay muted loop playsinline poster="images/screenshots/tool-walkthrough-poster.jpg" aria-label="Clipart ToolKit Proの実際の画面。プロジェクト設定から納品PDFまで、全工程が流れるところ" style="border-radius:16px;box-shadow:var(--shadow);margin:10px 0 22px;width:100%">
+      <source src="images/screenshots/tool-walkthrough-canva-sparkle.mp4" type="video/mp4">
+    </video>
+    <img class="reveal" src="images/warm2/hamster-mia-pair.png" alt="デスクで作業するハムスターとみあちゃん" style="width:320px;max-width:90%;margin:0 auto 30px">
+    <div class="pillars reveal-stagger">
+      <div class="pillar"><span class="pillar-num">01</span><h3>工程の効率化</h3><p>制作から納品までの主要な工程を、1つの画面で</p></div>
+      <div class="pillar"><span class="pillar-num">02</span><h3>品質の安心</h3><p>サイズも解像度も、迷わず整う</p></div>
+      <div class="pillar"><span class="pillar-num">03</span><h3>売れてる型に、自然と寄る</h3><p>テンプレート通りに進めるだけで、Etsyベストセラーと同じ型に。時短しながらクオリティも上がる</p></div>
+    </div>
+    <div style="text-align:center;margin-top:30px">
+      <img src="images/final/penguin.png" alt="" style="width:100px;margin:0 auto 10px">
+      <p style="color:var(--ink-soft)">素材を入れるだけ。仕上げから納品まで、まとめてカバーします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ③できること（CONTENTS） -->
+<section class="floral-bg" id="contents">
+  <div class="wrap">
+    <h2 class="reveal"><span class="sub">CONTENTS</span>この工程を、まとめて引き受けます</h2>
+    <div class="grid reveal-stagger">
+      <div class="card">
+        <img src="images/screenshots/single-image-processing.png" alt="背景透過エディタの画面">
+        <h3>画像処理</h3>
+        <p>余白カット・拡大・背景透過を、一括まとめて自動。気になるところだけブラシで直せます。</p>
+      </div>
+      <div class="card">
+        <img src="images/screenshots/single-product-page.png" alt="素材一覧画像を自動生成している画面">
+        <h3>商品ページ作成</h3>
+        <p>サムネイル・素材一覧シート・紹介動画・モックアップまで自動で作成。</p>
+      </div>
+      <div class="card">
+        <img src="images/screenshots/collage-delivery.png" alt="実際にお客様へ届く、購入者向けサンキューページの例">
+        <h3>納品まで</h3>
+        <p>ドライブ用とEtsy用を分けて書き出し。英語の納品PDFも10種類から選ぶだけ。</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:18px"><img src="images/final/australia-heart.png" alt="" style="width:200px;margin:0 auto"></div>
+  </div>
+</section>
+
+<!-- PROOF / USP -->
+<section class="about floral-bg">
+  <div class="wrap">
+    <h2 class="reveal">作ったのは、<br>実際にEtsyで売っている2人です</h2>
+
+    <div class="profile-pair reveal-stagger">
+      <div class="profile-item">
+        <a href="https://www.threads.com/@humstar.kirakira" target="_blank" rel="noopener"><img src="images/final/avatar-hamu.png" alt="はむのThreadsを見る"></a>
+        <h3>はむ</h3>
+        <p>元保育士・2児の母。メルカリで5万円で買ったPCを使い、デザインも未経験からEtsyをスタート。Etsyウォールアートで2か月目に500ドル達成。フォロワー400人で月42万円。</p>
+      </div>
+      <div class="profile-item">
+        <a href="https://www.threads.com/@mia.etsy_clipart" target="_blank" rel="noopener"><img src="images/final/avatar-mia.png" alt="miaのThreadsを見る"></a>
+        <h3>mia</h3>
+        <p>元システムエンジニア。Etsyスターセラー。7か月目で700ドル突破。デパートのように高クオリティかつ幅広いジャンルのクリップアートを展開。面倒な作業を自動化するのが得意。</p>
+      </div>
+    </div>
+
+    <div class="proof-badges reveal-stagger">
+      <div class="proof-badge">現役Etsyセラーが開発</div>
+      <div class="proof-badge">実際のベストセラーを徹底分析</div>
+      <div class="proof-badge">自分たちのショップでも使用中</div>
+    </div>
+
+    <div class="reveal-stagger">
+      <p>サムネイル・モックアップ・素材一覧シートのテンプレートは、実際のEtsyベストセラーをClaude Codeと分析したうえで設計しています。テンプレートに沿って作るだけで、売れている商品と同じ型に自然と寄っていく。「これで大丈夫か分からない」を減らしながら、狙って作るより早く仕上がります。</p>
+    </div>
+    <div class="garland-row reveal"><img src="images/final/garland.png" alt="" style="width:340px;max-width:80%"></div>
+    <div class="reveal-stagger">
+      <p>2人とも、いまもEtsyでクリップアートを売っています。だから「ここが面倒」を、全部知っています。</p>
+      <span class="pop">自分たちが毎日使うために作りました</span>
+    </div>
+  </div>
+</section>
+
+<!-- REALITY：実際どれくらい稼げるか -->
+<section class="whyetsy floral-bg">
+  <div class="wrap">
+    <h2 class="reveal"><span class="sub">REALITY</span>実際、どれくらい稼げるの？</h2>
+    <p class="lead reveal">はむとmiaだけの、特別な話ではありません。</p>
+    <div class="whyetsy-stats reveal-stagger">
+      <div class="stat pink-card"><strong>$200〜$1,000</strong><span>約3〜15万円／月<br>始めたばかりの人（1年目の目安）</span></div>
+      <div class="stat pink-card pink-solid"><strong>$2,000〜$10,000</strong><span>約30〜150万円／月<br>軌道に乗ってきたセラー</span></div>
+      <div class="stat pink-card"><strong>$10,000〜</strong><span>約150万円〜／月<br>本気で育てたショップ</span></div>
+    </div>
+    <p class="whyetsy-note reveal" style="font-size:12px;margin-bottom:24px">出典：海外Etsyセラー調査・専門メディア各社の集計をもとにした目安（Printful, Business of Apps, RichTactic ほか）。円換算は1ドル＝150円で概算。個人差があり、金額を保証するものではありません。</p>
+    <div class="whyetsy-box reveal">
+      <p>大事なのは、いきなり大きく稼ぐことではありません。<strong>50〜100点の商品を、根気よく育てること。</strong></p>
+      <p style="margin-top:10px">その土台づくりの時間を、Clipart ToolKit Proが短くします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ④料金比較：いちばんの訴求 -->
+<section class="compare floral-bg">
+  <div class="wrap">
+    <img class="cmp-char reveal" src="images/final/teddy-bear.png" alt="" aria-hidden="true">
+    <h2 class="reveal"><span class="sub">COST</span>じつは、今より安くなります</h2>
+    <p class="lead reveal">新しく増える出費ではありません。</p>
+    <div class="cmp-box reveal">
+      <div class="cmp-now">
+        <h3>いま払っているツール代</h3>
+        <div class="cmp-row"><span>Kittl（背景透過・300DPI）</span><span>2,250円</span></div>
+        <div class="cmp-row"><span>Canva Pro（画像・PDF作成）</span><span>1,500円</span></div>
+        <div class="cmp-row"><span>Upscayl（拡大）</span><span>無料</span></div>
+        <div class="cmp-total"><span>合計</span><strong>月3,750円</strong></div>
+      </div>
+      <div class="cmp-arrow">↓</div>
+      <div class="cmp-new">
+        <h3>Clipart ToolKit Pro なら</h3>
+        <strong>月1,480円<small>〜</small></strong>
+      </div>
+    </div>
+    <div class="cmp-msg reveal">
+      <p><strong>Kittlは解約できます。</strong>背景透過も300DPI変換も、Clipart ToolKitに入っています。</p>
+      <p>しかもモックアップ・素材一覧シート・納品PDFまで付いてくるので、<strong>Canvaを開くことがなくなります。</strong></p>
+      <p style="margin-top:14px">背景透過はKittl以外にも、Remove.bg（月1,200円〜）やPhotoroom（月1,950円〜）を使っている方も多く、商品のクオリティを求めてCanva Proと組み合わせると<strong>月5,000〜12,000円以上</strong>かかっているケースも珍しくありません。どんな組み合わせでも、Clipart ToolKit Proひとつにまとめれば今より安くなります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ベネフィット -->
+<section class="benefit floral-bg">
+  <div class="wrap">
+    <img class="benefit-char reveal" src="images/final/cat-cake.png" alt="" aria-hidden="true">
+    <h2 class="reveal"><span class="sub">BENEFITS</span>このツールで叶うこと</h2>
+    <div class="reveal-stagger">
+      <div class="row"><div><h3>サイズのミスが、なくなる</h3><p>元の絵が何pxでも、納品サイズは3000×3000ぴったりに統一。「書いた数字と実物が違う」がなくなります。</p></div></div>
+      <div class="row"><div><h3>商品ページが、迷わず埋まる</h3><p>Etsyに必要な画像5枚が、そろった状態で出てきます。「あとは出すだけ」から始められます。</p></div></div>
+      <div class="row"><div><h3>売れてる型を、自然となぞれる</h3><p>テンプレートは実際のEtsyベストセラーを分析して設計。使うだけで、狙って研究するより早く、クオリティも安定して売れている商品の水準に近づきます。</p></div></div>
+      <div class="row"><div><h3>バラバラだった月額が、まとまる</h3><p>あちこちに払っていたツール代が、ひとつに。しかも今より安くなります。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥使い方 -->
+<section class="floral-bg">
+  <div class="wrap">
+    <img class="cmp-char reveal" src="images/warm/frog-wand.png" alt="" aria-hidden="true">
+    <h2 class="reveal"><span class="sub">HOW TO USE</span>使い方はかんたん3ステップ</h2>
+    <div class="steps reveal-stagger">
+      <div class="step"><h3>AIでイラストを生成する</h3><p>Midjourneyでも、ChatGPTでも。使い慣れているAIで大丈夫です。</p></div>
+      <div class="step"><h3>ツールに入れる</h3><p>余白カット・透過・商品画像・納品PDFまで、1つの画面で完成。</p></div>
+      <div class="step"><h3>Etsyに出品する</h3><p>できあがったファイルを、そのまま出品するだけ。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧価格＋CTA -->
+<!-- ▼価格を変更するときは、この3つの .plan-card の中の数字だけ直せばOKです -->
+<section class="price floral-bg" id="buy">
+  <div class="wrap">
+    <img class="price-char reveal" src="images/warm/drink.png" alt="" aria-hidden="true">
+    <h2 class="reveal"><span class="sub">PRICE</span>料金プラン</h2>
+    <p class="lead reveal">機能はすべて同じ。違うのは、月に何枚処理できるかだけ。</p>
+    <div class="plans reveal-stagger">
+      <div class="plan-card pink-card">
+        <p class="plan-name">ライト</p>
+        <p class="plan-price">1,480<small>円/月</small></p>
+        <p class="plan-vol">月200枚（約4セット）</p>
+        <p class="plan-for">これから始める方に</p>
+      </div>
+      <div class="plan-card pink-card pink-solid rec">
+        <span class="plan-tag">おすすめ</span>
+        <p class="plan-name">スタンダード</p>
+        <p class="plan-price">2,980<small>円/月</small></p>
+        <p class="plan-vol">月500枚（約10セット）</p>
+        <p class="plan-for">本格的に育てたい方に</p>
+      </div>
+      <div class="plan-card pink-card">
+        <p class="plan-name">プロ</p>
+        <p class="plan-price">4,980<small>円/月</small></p>
+        <p class="plan-vol">月1,000枚（約20セット）</p>
+        <p class="plan-for">量産・複数ショップの方に</p>
+      </div>
+    </div>
+
+    <div class="allplan reveal">
+      <img class="mini-accent" src="images/accents/rose-peach.png" alt="" aria-hidden="true" style="width:40px">
+      <h3>すべてのプランに含まれます</h3>
+      <ul>
+        <li>アップロード・自動処理（背景透過・300DPI変換）</li>
+        <li>確認・修正／色味調整</li>
+        <li>並び替え</li>
+        <li>サムネイル作成</li>
+        <li>素材一覧シート作成</li>
+        <li>商品説明文</li>
+        <li>モックアップ生成</li>
+        <li>商品動画</li>
+        <li>まとめてダウンロード／納品PDF</li>
+        <li><strong>PDF教材「Etsyを始める人のためのガイド」</strong></li>
+        <li>今後の追加コンテンツ（追加料金なし）<br><span style="font-size:13px;color:var(--ink-soft)">順次アップデート予定です</span></li>
+      </ul>
+    </div>
+
+    <img class="reveal" src="images/final/bonus-guide-promo.png" alt="ツール購入者限定PDF教材「Etsy初心者向けガイド」の表紙と目次。はじめに、1.何を売るか〜6.売れ続けるために、おわりに、よくある質問、返品・発送ポリシーの全11ページ" style="border-radius:16px;box-shadow:var(--shadow);margin:24px 0 0;width:100%">
+
+    <!-- ▼申込ページのURLが決まったら、下の div を消して a タグに戻してください
+    <a class="cta" href="ここに申込URL" target="_blank" rel="noopener"><span>今すぐ申し込む<small>いつでも解約できます</small></span></a>
+    -->
+    <div class="soon">まもなく公開<small>公開までもう少しお待ちください</small></div>
+    <p class="price-note">プランの変更・解約はいつでもできます。</p>
+  </div>
+</section>
+
+<!-- ⑨FAQ -->
+<section class="faq floral-bg" id="faq">
+  <div class="wrap">
+    <img class="cmp-char reveal" src="images/warm/candy.png" alt="" aria-hidden="true" style="width:100px">
+    <h2 class="reveal"><span class="sub">FAQ</span>よくあるご質問</h2>
+    <div class="reveal-stagger">
+      <details><summary>Midjourneyは必要ですか？</summary><p>いいえ、必須ではありません。最近はChatGPTの画像生成で作って販売している方もいらっしゃいます。すでに使い慣れているAIがあれば、それで大丈夫です。</p></details>
+      <details><summary>デザインソフトを使ったことがなくても大丈夫ですか？</summary><p>大丈夫です。背景の透過も解像度の調整もツールが自動でやるので、Photoshopなどを覚える必要はありません。</p></details>
+      <details><summary>プランはあとから変えられますか？</summary><p>はい。いつでも変更・解約できます。まずはライトで試して、足りなくなったらスタンダードに、という使い方もできます。</p></details>
+      <details><summary>処理枚数はどう数えられますか？</summary><p>アップロードした素材1枚につき1枚として数えます。処理に失敗した分は数えません。枚数は、ご契約日を起点にした毎月の区切りでリセットされます。</p></details>
+      <details><summary>商用利用はできますか？</summary><p>はい。作成した画像は、ご自身のEtsyショップ等で商用利用いただけます。詳しい利用範囲は正式版でご案内します。</p></details>
+      <details><summary>Etsyを始めたばかりでも使えますか？</summary><p>はい。全プランに「Etsyを始める人のためのガイド」が付いてきます。ショップの開設から出品、売れ続けるコツまでまとめてあります。</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="flourish"><img src="images/final/poodle.png" alt="" aria-hidden="true" style="width:74px;margin:0 auto"></div>
+  <p class="license">
+    <strong>ご利用について</strong><br>
+    ・Clipart ToolKit Proで作成した画像は、ご自身のEtsyショップ等での商用利用が可能です。<br>
+    ・ツール自体の再配布・転売はご遠慮ください。
+  </p>
+  <p class="kuma-note">わからないことがあれば、いつでも聞いてくださいね。</p>
+  <p style="margin-bottom:12px">
+    <a href="tokushoho.html">特定商取引法に基づく表記</a>
+    <a href="terms.html">利用規約</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  </p>
+  <p>© <span id="y"></span> Clipart ToolKit Pro</p>
+</footer>
+
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script>
+(() => {
+  const targets = document.querySelectorAll('.reveal, .reveal-stagger');
+  if (!targets.length) return;
+
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    targets.forEach(el => el.classList.add('is-in'));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (en.isIntersecting) {
+        en.target.classList.add('is-in');
+        io.unobserve(en.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+
+  targets.forEach((el) => io.observe(el));
+})();
+</script>
+<script>
+(() => {
+  // ロード画面：ページが読み込み終わったら消す
+  const loader = document.getElementById('loader');
+  const hideLoader = () => loader.classList.add('hide');
+  if (document.readyState === 'complete') {
+    setTimeout(hideLoader, 400);
+  } else {
+    window.addEventListener('load', () => setTimeout(hideLoader, 400));
+  }
+
+  // ハンバーガーメニューの開閉
+  const nav = document.getElementById('siteNav');
+  const toggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  // 下に張り付く利用開始ボタン：HEROを過ぎたら表示
+  const stickyCta = document.getElementById('stickyCta');
+  const hero = document.querySelector('.hero');
+  const io2 = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      stickyCta.classList.toggle('show', !en.isIntersecting);
+    });
+  }, { rootMargin: '-60px 0px 0px 0px' });
+  if (hero) io2.observe(hero);
+})();
+</script>
+</body>
+</html>
