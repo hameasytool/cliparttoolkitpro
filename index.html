@@ -44,13 +44,31 @@
   .lead{text-align:center;color:var(--ink-soft);margin-bottom:32px}
   p+p{margin-top:1em}
 
-  /* 見出しの一部にマーカーを引いたような強調 */
+  /* 見出しの一部にマーカーを引いたような強調（スクロールでシュッと伸びる） */
   .marker{position:relative;display:inline-block;white-space:nowrap}
   .marker::before{
-    content:"";position:absolute;left:-4px;right:-4px;bottom:2px;height:38%;
+    content:"";position:absolute;left:-4px;bottom:2px;height:38%;
     background:var(--marker);z-index:0;border-radius:3px;
+    width:0;transition:width .8s cubic-bezier(.22,.61,.36,1) .2s;
   }
+  .marker.is-in::before{width:calc(100% + 8px)}
   .marker span{position:relative;z-index:1}
+
+  /* 強調したい太字テキストのポップイン演出（.reveal が画面内に入ったタイミングで再生） */
+  @keyframes popEmphasis{
+    0%{opacity:.3;transform:scale(.95)}
+    55%{opacity:1;transform:scale(1.035)}
+    100%{opacity:1;transform:scale(1)}
+  }
+  .reveal.is-in strong.pop,
+  .reveal-stagger.is-in strong.pop{animation:popEmphasis .75s cubic-bezier(.22,.61,.36,1) .3s both}
+  .reveal-stagger.is-in > *:nth-child(1) strong.pop{animation-delay:.3s}
+  .reveal-stagger.is-in > *:nth-child(2) strong.pop{animation-delay:.39s}
+  .reveal-stagger.is-in > *:nth-child(3) strong.pop{animation-delay:.48s}
+  @media(prefers-reduced-motion: reduce){
+    .marker::before{transition:none;width:calc(100% + 8px)}
+    .reveal.is-in strong.pop,.reveal-stagger.is-in strong.pop{animation:none}
+  }
 
   .cta{
     display:flex;align-items:center;
@@ -70,6 +88,10 @@
   .cta:hover{transform:translateY(3px);box-shadow:0 3px 0 0 #a9793a, 0 8px 20px rgba(169,127,58,.4)}
   .cta small{display:block;font-weight:400;font-size:11px;opacity:.7;margin-top:2px;color:#5c4030}
 
+  .cta-trust{
+    text-align:center;font-size:12px;color:var(--ink-soft);margin-top:10px;
+    display:flex;align-items:center;justify-content:center;gap:5px;
+  }
   .cta.cta-secondary{
     background:linear-gradient(160deg, #ffffff, #fbd7e2 85%);
     box-shadow:0 6px 0 0 #eda6bc, 0 14px 30px rgba(230,150,180,.3);
@@ -83,10 +105,19 @@
     text-align:center;padding:48px 0 40px;position:relative;overflow:hidden;
   }
   .hero .badge{
-    display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--brand-deep);
-    border:1px solid var(--line);border-radius:999px;
-    padding:6px 16px;font-size:13px;font-weight:700;margin-bottom:20px;
+    display:inline-flex;align-items:center;gap:7px;
+    background:linear-gradient(135deg,#ffffff,var(--cream) 130%);color:var(--brand-deep);
+    border:1px solid var(--brand);border-radius:999px;
+    padding:8px 20px 8px 16px;font-size:13px;font-weight:700;margin-bottom:20px;
+    letter-spacing:.01em;
+    box-shadow:0 4px 16px rgba(201,107,133,.2), inset 0 1px 0 rgba(255,255,255,.9);
   }
+  .hero .badge .badge-tag{
+    display:inline-block;white-space:nowrap;background:var(--brand-deep);color:#fff;
+    border-radius:999px;padding:3px 10px;font-size:11px;font-weight:800;letter-spacing:.04em;
+    box-shadow:0 2px 6px rgba(201,107,133,.35);
+  }
+  .hero .badge .badge-spark{color:var(--gold);font-size:12px;line-height:1}
   .hero h1{font-weight:700;font-size:28px;line-height:1.6;margin-bottom:16px;color:var(--ink)}
   .hero .hero-sub{color:var(--ink);opacity:.75;margin-bottom:28px;font-size:15px}
   .hero-video{
@@ -331,7 +362,7 @@
     display:inline-block;color:var(--brand-deep);font-weight:800;font-size:13px;
     letter-spacing:.15em;margin-bottom:4px;
   }
-  .pillar h3{font-size:17px;color:var(--ink)}
+  .pillar h3{font-size:21px;color:var(--ink);font-weight:700;margin-top:2px}
   .pillar p{font-size:13px;color:var(--ink-soft);margin-top:4px}
 
   /* ===== PROOF/USP プロフィール＆バッジ ===== */
@@ -492,7 +523,7 @@
       <li><a href="#contents">できること</a></li>
       <li><a href="#buy">料金</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a class="nav-cta" href="#buy">利用を開始する</a></li>
+      <li><a class="nav-cta" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener">利用を開始する</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="メニュー"><span></span><span></span><span></span></button>
   </div>
@@ -502,27 +533,29 @@
     <li><a href="#contents">できること</a></li>
     <li><a href="#buy">料金</a></li>
     <li><a href="#faq">よくあるご質問</a></li>
-    <li><a class="nav-cta" href="#buy">利用を開始する</a></li>
+    <li><a class="nav-cta" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener">利用を開始する</a></li>
   </ul>
 </div>
 
 <!-- 下に張り付く利用開始ボタン -->
 <div class="sticky-cta" id="stickyCta">
-  <a href="#buy">利用を開始する</a>
+  <a href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener">利用を開始する</a>
+  <span>🔒 Google認証で安心</span>
 </div>
 
 <!-- ①ヒーロー -->
 <header class="hero floral-bg">
   <div class="wrap">
     <img class="hero-badge-logo reveal" src="images/final/hamu-mia-badge.png" alt="Hamu & Mia collaboration">
-    <span class="badge">"日本初" Etsyクリップアート全自動化ツール</span>
+    <span class="badge"><span class="badge-spark">✦</span><span class="badge-tag">日本初</span>Etsyクリップアート全自動化ツール</span>
     <video class="hero-video" autoplay muted loop playsinline poster="images/hero-loop-poster.jpg" aria-label="ハムスターたちが作業しているところに黒猫が魔法をかけて、自動で仕上げてくれる様子のアニメーション">
       <source src="images/hero-loop.mp4" type="video/mp4">
     </video>
-    <h1>Etsyのクリップアート作業を、<br><span class="marker"><span>まるごと自動化。</span></span><br>実際に売っている人が、開発しました。</h1>
+    <h1><img src="images/final/etsy-logo.png" alt="Etsy" style="height:1.5em;width:auto;vertical-align:-.32em;display:inline-block;margin-right:.06em">のクリップアート作業を、<br><span class="marker"><span>まるごと自動化。</span></span><br>実際に売っている人が、開発しました。</h1>
     <p class="hero-sub">売れている理由まで、研究しました。</p>
     <p class="with">はむ × <strong>mia</strong>が共同開発したツールです</p>
-    <a class="cta" href="#buy"><span>利用を開始する</span></a>
+    <a class="cta" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener"><span>利用を開始する</span></a>
+    <p class="cta-trust">🔒 Google認証でセキュリティも安心。</p>
   </div>
 </header>
 
@@ -533,15 +566,15 @@
     <p class="lead reveal">世界中の人に、自分の作った画像を売れるマーケットです。</p>
     <img class="globe-img reveal" src="images/final/globe.png" alt="">
     <div class="whyetsy-stats reveal-stagger">
-      <div class="stat pink-card"><strong>119億ドル</strong><span>年間流通総額（1兆円超）</span></div>
-      <div class="stat pink-card pink-solid"><strong>8,650万人</strong><span>世界のアクティブバイヤー</span></div>
-      <div class="stat pink-card"><strong>560万人</strong><span>出店しているセラー数</span></div>
+      <div class="stat pink-card"><strong class="pop">119億ドル</strong><span><span style="white-space:nowrap">年間流通総額</span><br><span style="white-space:nowrap">（1兆円超）</span></span></div>
+      <div class="stat pink-card pink-solid"><strong class="pop">8,650万人</strong><span><span style="white-space:nowrap">世界の</span><br><span style="white-space:nowrap">アクティブバイヤー</span></span></div>
+      <div class="stat pink-card"><strong class="pop">560万人</strong><span><span style="white-space:nowrap">出店している</span><br><span style="white-space:nowrap">セラー数</span></span></div>
     </div>
     <p class="whyetsy-note reveal" style="font-size:12px;margin-bottom:24px">出典：Etsy, Inc. 2025年通期決算（investors.etsy.com）</p>
     <div class="teacat-row reveal"><img src="images/final/teacat.png" alt=""></div>
     <div class="whyetsy-box reveal">
-      <p>Etsyは、日本からの新規出店の受付を一時停止していた時期がありました。再開されたのは、2023年11月。</p>
-      <p style="margin-top:10px"><strong>つまり、日本人セラーの参入は、まだ始まったばかりです。</strong></p>
+      <p>Etsyは、日本からの新規出店の受付を<br>一時停止していた時期がありました。<br>再開されたのは、2023年11月。</p>
+      <p style="margin-top:10px"><strong class="pop">つまり、日本人セラーの参入は、<br>まだ始まったばかり。<br>この119億ドルの市場に、<br>あなたの商品を並べるなら、今です。</strong></p>
     </div>
   </div>
 </section>
@@ -553,7 +586,7 @@
 
     <div class="pain-block reveal">
       <img src="images/final/poodle.png" alt="">
-      <h3>絵を作るのは楽しい。<br>でも、商品として仕上げるまでが長い。</h3>
+      <h3>AIでイラストや画像を作るのは楽しい。<br>でも、どうやって<br>お金にするのか分からない。<br>Etsyに出品したいけど、<br>商品として仕上げるまでが長い。</h3>
       <p>背景の透過、解像度UP、サイズ調整、色味調整、並び替え。サムネイル、素材一覧、モックアップ、動画作成、納品PDF……</p>
       <p class="note">気づけば、絵を作った時間より長くかかっている。</p>
     </div>
@@ -566,13 +599,13 @@
 
     <div class="pain-block reveal">
       <img src="images/final/white-cat.png" alt="">
-      <h3>売れてる商品を研究したいけど、<br>時間がない</h3>
+      <h3>売れてる商品を研究したいけど、<br>分析して再現する時間がない</h3>
       <p class="note">本当は、実際に売れている商品を参考にしたい。でも、探して、分析して、自分の商品に落とし込むにはまとまった時間がいる。気づけば後回しになっている。</p>
     </div>
 
     <div class="pain-block reveal">
       <img src="images/final/frog.png" alt="">
-      <h3>これ、Etsyで通用するのか<br>自信が持てない</h3>
+      <h3>出品してみたけど、<br>Etsyで通用するのか自信が持てない</h3>
       <p class="note">解像度は大丈夫？　サイズは？　商品紹介画像ってこれでいいの？　「何が正解か分からないまま出品する」という不安を抱えたことはありませんか。</p>
     </div>
 
@@ -585,13 +618,13 @@
   <div class="wrap">
     <img class="insight-flower reveal" src="images/final/flower-white-rose.png" alt="">
     <div class="reveal" style="max-width:520px;margin:0 auto;text-align:center;color:var(--ink-soft)">
-      <p style="font-size:17px;color:var(--ink);font-weight:700">正直なところ、作業が多くて面倒。</p>
-      <p style="margin-top:1.2em">それだけじゃなくて、商品化に時間がかかって、出品までたどり着けない。</p>
-      <p style="margin-top:1.2em">しかも、何が正解か分からないまま、「これでいいのかな」と不安なまま出している。</p>
-      <p style="margin-top:1.2em"><strong style="color:var(--ink)">本当は、もっと商品を作りたいのに。<br>時間と、作業と、判断に、邪魔されている。</strong></p>
+      <p style="font-size:17px;color:var(--ink);font-weight:700">正直、Etsyってブルーオーシャンだし、軌道に乗ると入ってくる金額も大きい。でも、工程が複雑だし作業が多くて続けるのが大変。</p>
+      <p style="margin-top:1.2em">本業や子育ての合間にやりたいのに、商品化に時間がかかって、出品までたどり着けない。</p>
+      <p style="margin-top:1.2em">しかも、何が正解か分からないまま、「これでいいのかな」と不安なまま出品している。</p>
+      <p style="margin-top:1.2em"><strong class="pop" style="color:var(--ink)">本当は、画像生成に集中したい。もっと商品を作りたいのに。<br>時間と、作業と、判断に、邪魔されている。</strong></p>
       <div class="insight-divider reveal"><img src="images/final/lavender.png" alt=""></div>
       <p>パソコンに向かって同じ作業を延々とするために、Etsyを始めたわけじゃないはずです。</p>
-      <p style="margin-top:1.2em"><strong style="color:var(--brand-deep)">本当は、面倒な作業ではなく、新しい商品を考える時間に使いたい。</strong></p>
+      <p style="margin-top:1.2em"><strong class="pop" style="color:var(--brand-deep)">本当は、面倒な作業ではなく、新しい商品を考える時間に使いたい。<br>もっとワクワクしながらEtsyで副業できるはず。</strong></p>
     </div>
   </div>
 </section>
@@ -603,10 +636,10 @@
     <video class="reveal" autoplay muted loop playsinline poster="images/screenshots/tool-walkthrough-poster.jpg" aria-label="Clipart ToolKit Proの実際の画面。プロジェクト設定から納品PDFまで、全工程が流れるところ" style="border-radius:16px;box-shadow:var(--shadow);margin:10px 0 22px;width:100%">
       <source src="images/screenshots/tool-walkthrough-canva-sparkle.mp4" type="video/mp4">
     </video>
-    <img class="reveal" src="images/warm2/hamster-mia-pair.png" alt="デスクで作業するハムスターとみあちゃん" style="width:320px;max-width:90%;margin:0 auto 30px">
+    <img class="reveal" src="images/warm2/hamster-mia-pair.png" alt="デスクで作業するハムスターとmia" style="width:320px;max-width:90%;margin:0 auto 30px">
     <div class="pillars reveal-stagger">
-      <div class="pillar"><span class="pillar-num">01</span><h3>工程の効率化</h3><p>制作から納品までの主要な工程を、1つの画面で</p></div>
-      <div class="pillar"><span class="pillar-num">02</span><h3>品質の安心</h3><p>サイズも解像度も、迷わず整う</p></div>
+      <div class="pillar"><span class="pillar-num">01</span><h3>工程の効率化</h3><p>制作から納品までの面倒な工程を、1つの画面で完結</p></div>
+      <div class="pillar"><span class="pillar-num">02</span><h3>品質の安心</h3><p>サイズも解像度やデザインも、迷わず整う。</p></div>
       <div class="pillar"><span class="pillar-num">03</span><h3>売れてる型に、自然と寄る</h3><p>テンプレート通りに進めるだけで、Etsyベストセラーと同じ型に。時短しながらクオリティも上がる</p></div>
     </div>
     <div style="text-align:center;margin-top:30px">
@@ -682,13 +715,13 @@
     <h2 class="reveal"><span class="sub">REALITY</span>実際、どれくらい稼げるの？</h2>
     <p class="lead reveal">はむとmiaだけの、特別な話ではありません。</p>
     <div class="whyetsy-stats reveal-stagger">
-      <div class="stat pink-card"><strong>$200〜$1,000</strong><span>約3〜15万円／月<br>始めたばかりの人（1年目の目安）</span></div>
-      <div class="stat pink-card pink-solid"><strong>$2,000〜$10,000</strong><span>約30〜150万円／月<br>軌道に乗ってきたセラー</span></div>
-      <div class="stat pink-card"><strong>$10,000〜</strong><span>約150万円〜／月<br>本気で育てたショップ</span></div>
+      <div class="stat pink-card"><strong class="pop">$200〜$1,000</strong><span><span style="white-space:nowrap">約3〜15万円／月</span><br><span style="white-space:nowrap">始めたばかりの人</span><br><span style="white-space:nowrap">（1年目の目安）</span></span></div>
+      <div class="stat pink-card pink-solid"><strong class="pop">$2,000〜$10,000</strong><span><span style="white-space:nowrap">約30〜150万円／月</span><br><span style="white-space:nowrap">軌道に乗ってきた</span><br><span style="white-space:nowrap">セラー</span></span></div>
+      <div class="stat pink-card"><strong class="pop">$10,000〜</strong><span><span style="white-space:nowrap">約150万円〜／月</span><br><span style="white-space:nowrap">本気で育てた</span><br><span style="white-space:nowrap">ショップ</span></span></div>
     </div>
     <p class="whyetsy-note reveal" style="font-size:12px;margin-bottom:24px">出典：海外Etsyセラー調査・専門メディア各社の集計をもとにした目安（Printful, Business of Apps, RichTactic ほか）。円換算は1ドル＝150円で概算。個人差があり、金額を保証するものではありません。</p>
     <div class="whyetsy-box reveal">
-      <p>大事なのは、いきなり大きく稼ぐことではありません。<strong>50〜100点の商品を、根気よく育てること。</strong></p>
+      <p>大事なのは、いきなり大きく稼ぐことではありません。<strong class="pop">50〜100点の商品を、根気よく育てること。</strong></p>
       <p style="margin-top:10px">その土台づくりの時間を、Clipart ToolKit Proが短くします。</p>
     </div>
   </div>
@@ -711,13 +744,13 @@
       <div class="cmp-arrow">↓</div>
       <div class="cmp-new">
         <h3>Clipart ToolKit Pro なら</h3>
-        <strong>月1,480円<small>〜</small></strong>
+        <strong class="pop">月1,480円<small>〜</small></strong>
       </div>
     </div>
     <div class="cmp-msg reveal">
-      <p><strong>Kittlは解約できます。</strong>背景透過も300DPI変換も、Clipart ToolKitに入っています。</p>
-      <p>しかもモックアップ・素材一覧シート・納品PDFまで付いてくるので、<strong>Canvaを開くことがなくなります。</strong></p>
-      <p style="margin-top:14px">背景透過はKittl以外にも、Remove.bg（月1,200円〜）やPhotoroom（月1,950円〜）を使っている方も多く、商品のクオリティを求めてCanva Proと組み合わせると<strong>月5,000〜12,000円以上</strong>かかっているケースも珍しくありません。どんな組み合わせでも、Clipart ToolKit Proひとつにまとめれば今より安くなります。</p>
+      <p><strong class="pop">Kittlは解約できます。</strong>背景透過も300DPI変換も、Clipart ToolKitに入っています。</p>
+      <p>しかもモックアップ・素材一覧シート・納品PDFまで付いてくるので、<strong class="pop">Canvaを開くことがなくなります。</strong></p>
+      <p style="margin-top:14px">背景透過はKittl以外にも、Remove.bg（月1,200円〜）やPhotoroom（月1,950円〜）を使っている方も多く、商品のクオリティを求めてCanva Proと組み合わせると<strong class="pop">月5,000〜12,000円以上</strong>かかっているケースも珍しくありません。どんな組み合わせでも、Clipart ToolKit Proひとつにまとめれば今より安くなります。</p>
     </div>
   </div>
 </section>
@@ -798,10 +831,8 @@
 
     <img class="reveal" src="images/final/bonus-guide-promo.png" alt="ツール購入者限定PDF教材「Etsy初心者向けガイド」の表紙と目次。はじめに、1.何を売るか〜6.売れ続けるために、おわりに、よくある質問、返品・発送ポリシーの全11ページ" style="border-radius:16px;box-shadow:var(--shadow);margin:24px 0 0;width:100%">
 
-    <!-- ▼申込ページのURLが決まったら、下の div を消して a タグに戻してください
-    <a class="cta" href="ここに申込URL" target="_blank" rel="noopener"><span>今すぐ申し込む<small>いつでも解約できます</small></span></a>
-    -->
-    <div class="soon">まもなく公開<small>公開までもう少しお待ちください</small></div>
+    <a class="cta" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener"><span>今すぐ申し込む<small>いつでも解約できます</small></span></a>
+    <p class="cta-trust">🔒 Google認証でセキュリティも安心。</p>
     <p class="price-note">プランの変更・解約はいつでもできます。</p>
   </div>
 </section>
@@ -842,7 +873,7 @@
 <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 <script>
 (() => {
-  const targets = document.querySelectorAll('.reveal, .reveal-stagger');
+  const targets = document.querySelectorAll('.reveal, .reveal-stagger, .marker');
   if (!targets.length) return;
 
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
