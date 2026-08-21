@@ -109,9 +109,10 @@
     background:linear-gradient(135deg,#ffffff,var(--cream) 130%);color:var(--brand-deep);
     border:1px solid var(--brand);border-radius:999px;
     padding:8px 20px 8px 16px;font-size:13px;font-weight:700;margin-bottom:20px;
-    letter-spacing:.01em;
+    letter-spacing:.01em;text-decoration:none;transition:transform .15s ease;
     box-shadow:0 4px 16px rgba(201,107,133,.2), inset 0 1px 0 rgba(255,255,255,.9);
   }
+  .hero .badge:hover{transform:translateY(-2px)}
   .hero .badge .badge-tag{
     display:inline-block;white-space:nowrap;background:var(--brand-deep);color:#fff;
     border-radius:999px;padding:3px 10px;font-size:11px;font-weight:800;letter-spacing:.04em;
@@ -206,7 +207,9 @@
   .cmp-new{
     background:var(--cream);border:2px dashed var(--brand);
     border-radius:var(--radius);padding:22px;text-align:center;
+    display:block;text-decoration:none;color:inherit;transition:transform .15s ease;
   }
+  .cmp-new:hover{transform:translateY(-2px)}
   .cmp-new h3{font-size:14px;color:var(--brand-deep);margin-bottom:6px;font-weight:700}
   .cmp-new strong{display:block;font-size:38px;color:var(--brand-deep);font-weight:800;line-height:1.2}
   .cmp-new strong small{font-size:16px}
@@ -252,7 +255,8 @@
   .price{background:linear-gradient(180deg,var(--bg),var(--cream))}
   .price-char{width:110px;margin:0 auto 4px}
   .plans{display:grid;grid-template-columns:1fr;gap:14px;max-width:460px;margin:0 auto}
-  .plan-card{padding:22px 20px 26px;position:relative}
+  .plan-card{padding:22px 20px 26px;position:relative;display:block;text-decoration:none;color:inherit;transition:transform .15s ease}
+  .plan-card:hover{transform:translateY(-2px)}
   .plan-card.rec{border-color:var(--brand-deep);border-width:2px;box-shadow:0 8px 24px rgba(201,107,133,.22)}
   .plan-tag{
     position:absolute;top:-13px;left:50%;transform:translateX(-50%);
@@ -547,7 +551,7 @@
 <header class="hero floral-bg">
   <div class="wrap">
     <img class="hero-badge-logo reveal" src="images/final/hamu-mia-badge.png" alt="Hamu & Mia collaboration">
-    <span class="badge"><span class="badge-spark">✦</span><span class="badge-tag">日本初</span>Etsyクリップアート全自動化ツール</span>
+    <a class="badge" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener"><span class="badge-spark">✦</span><span class="badge-tag">日本初</span>Etsyクリップアート全自動化ツール</a>
     <video class="hero-video" autoplay muted loop playsinline poster="images/hero-loop-poster.jpg" aria-label="ハムスターたちが作業しているところに黒猫が魔法をかけて、自動で仕上げてくれる様子のアニメーション">
       <source src="images/hero-loop.mp4" type="video/mp4">
     </video>
@@ -586,7 +590,7 @@
 
     <div class="pain-block reveal">
       <img src="images/final/poodle.png" alt="">
-      <h3>AIでイラストや画像を作るのは楽しい。<br>でも、どうやって<br>お金にするのか分からない。<br>Etsyに出品したいけど、<br>商品として仕上げるまでが長い。</h3>
+      <h3>AIでイラストや画像を作るのは楽しい。<br>でも、どうやって<br>お金にするのか分からない。</h3>
       <p>背景の透過、解像度UP、サイズ調整、色味調整、並び替え。サムネイル、素材一覧、モックアップ、動画作成、納品PDF……</p>
       <p class="note">気づけば、絵を作った時間より長くかかっている。</p>
     </div>
@@ -742,10 +746,10 @@
         <div class="cmp-total"><span>合計</span><strong>月3,750円</strong></div>
       </div>
       <div class="cmp-arrow">↓</div>
-      <div class="cmp-new">
+      <a class="cmp-new" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener">
         <h3>Clipart ToolKit Pro なら</h3>
         <strong class="pop">月1,480円<small>〜</small></strong>
-      </div>
+      </a>
     </div>
     <div class="cmp-msg reveal">
       <p><strong class="pop">Kittlは解約できます。</strong>背景透過も300DPI変換も、Clipart ToolKitに入っています。</p>
@@ -790,25 +794,25 @@
     <h2 class="reveal"><span class="sub">PRICE</span>料金プラン</h2>
     <p class="lead reveal">機能はすべて同じ。違うのは、月に何枚処理できるかだけ。</p>
     <div class="plans reveal-stagger">
-      <div class="plan-card pink-card">
+      <a class="plan-card pink-card" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener">
         <p class="plan-name">ライト</p>
         <p class="plan-price">1,480<small>円/月</small></p>
         <p class="plan-vol">月200枚（約4セット）</p>
         <p class="plan-for">これから始める方に</p>
-      </div>
-      <div class="plan-card pink-card pink-solid rec">
+      </a>
+      <a class="plan-card pink-card pink-solid rec" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener">
         <span class="plan-tag">おすすめ</span>
         <p class="plan-name">スタンダード</p>
         <p class="plan-price">2,980<small>円/月</small></p>
         <p class="plan-vol">月500枚（約10セット）</p>
         <p class="plan-for">本格的に育てたい方に</p>
-      </div>
-      <div class="plan-card pink-card">
+      </a>
+      <a class="plan-card pink-card" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener">
         <p class="plan-name">プロ</p>
         <p class="plan-price">4,980<small>円/月</small></p>
         <p class="plan-vol">月1,000枚（約20セット）</p>
         <p class="plan-for">量産・複数ショップの方に</p>
-      </div>
+      </a>
     </div>
 
     <div class="allplan reveal">
