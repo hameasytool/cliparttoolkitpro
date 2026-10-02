@@ -164,7 +164,26 @@
   }
   .hero .with{font-size:13px;color:var(--ink);opacity:.7;margin-top:2px;margin-bottom:24px}
   .hero .with strong{color:var(--ink);font-weight:400}
-  .hero-badge-logo{width:88px;margin:0 auto 12px} .hero h1{font-family:"Cormorant Garamond","Zen Maru Gothic",serif;font-size:44px;line-height:1.06;margin:24px 0 16px;letter-spacing:.025em;background:none;color:var(--ink);-webkit-text-fill-color:var(--ink);animation:none}.hero h1 .hero-title-line{display:block}.hero h1 .hero-title-line.main{font-size:1.04em;color:#704b47;-webkit-text-fill-color:#704b47;font-weight:700;text-shadow:0 2px 0 rgba(255,255,255,.7)}.hero h1 .hero-title-line.sub{font-size:1.18em;color:#9d6074;-webkit-text-fill-color:#9d6074;font-weight:700;text-shadow:0 3px 0 rgba(251,214,222,.85)}.hero .hero-sub{display:inline-block;opacity:1;color:var(--ink);font-size:21px;line-height:1.65;font-weight:800;letter-spacing:.02em;margin:8px auto 22px;padding:8px 18px;background:rgba(255,251,250,.72);border-radius:999px;box-shadow:0 8px 24px rgba(201,107,133,.12)}.hero .hero-sub .highlight{color:var(--brand-deep);font-size:1.12em;-webkit-text-fill-color:var(--brand-deep);text-shadow:0 2px 0 rgba(251,214,222,.95)}.hero .with{font-size:14px;max-width:520px;margin-left:auto;margin-right:auto}
+  .hero-badge-logo{width:88px;margin:0 auto 12px}
+
+  /* ===== Hero title and sparkle motion ===== */
+  body{position:relative;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.8px),radial-gradient(circle,rgba(201,161,90,.55) 0 1px,transparent 2px);background-size:110px 110px,170px 170px;background-position:15px 30px,80px 90px;animation:bgStarsDrift 26s linear infinite;opacity:.55}
+  .site-nav,header,main,section,footer{position:relative;z-index:1}
+  .shooting-stars{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+  .shooting-stars span{position:absolute;top:-8%;left:var(--x);width:120px;height:2px;border-radius:999px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.96),rgba(201,161,90,.85));box-shadow:0 0 12px rgba(255,255,255,.9),0 0 22px rgba(201,161,90,.35);transform:rotate(-28deg);opacity:0;animation:shootingStar var(--d) linear infinite;animation-delay:var(--delay)}
+  .shooting-stars span:nth-child(1){--x:18%;--d:7.8s;--delay:0s}.shooting-stars span:nth-child(2){--x:46%;--d:9.4s;--delay:2.6s}.shooting-stars span:nth-child(3){--x:76%;--d:8.6s;--delay:5.1s}.shooting-stars span:nth-child(4){--x:32%;--d:10.2s;--delay:7.2s}
+  @keyframes shootingStar{0%{opacity:0;transform:translate3d(0,0,0) rotate(-28deg)}8%{opacity:1}32%{opacity:.95}48%,100%{opacity:0;transform:translate3d(-760px,560px,0) rotate(-28deg)}}
+  @keyframes bgStarsDrift{from{background-position:15px 30px,80px 90px}to{background-position:125px 140px,250px 260px}}
+  .hero h1{font-family:"Cormorant Garamond","Zen Maru Gothic",serif;font-size:46px;line-height:1.08;margin:24px 0 18px;letter-spacing:.025em;background:none;color:#704b47;-webkit-text-fill-color:#704b47;animation:none;text-shadow:0 3px 0 rgba(255,255,255,.72),0 12px 24px rgba(201,107,133,.16);white-space:nowrap}
+  .hero .hero-sub{display:inline-block;position:relative;overflow:hidden;color:var(--ink);opacity:1;margin:4px auto 28px;font-size:22px;line-height:1.72;font-weight:900;letter-spacing:.02em;background:none;box-shadow:none;border-radius:0;padding:0;text-shadow:0 2px 0 rgba(255,255,255,.86)}
+  .hero .hero-sub::after{content:"";position:absolute;top:-20%;left:-35%;width:28%;height:140%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.85),transparent);transform:skewX(-18deg);animation:copyShine 3.2s ease-in-out infinite}
+  .hero .hero-sub .highlight{color:var(--brand-deep);-webkit-text-fill-color:var(--brand-deep);font-size:1.14em;text-shadow:0 0 12px rgba(251,214,222,.95),0 2px 0 rgba(255,255,255,.9);animation:highlightTwinkle 2.4s ease-in-out infinite}
+  @keyframes copyShine{0%,38%{left:-35%;opacity:0}50%{opacity:1}74%,100%{left:112%;opacity:0}}
+  @keyframes highlightTwinkle{0%,100%{filter:brightness(1)}50%{filter:brightness(1.22)}}
+  @media(max-width:540px){.hero h1{font-size:38px;letter-spacing:.01em}.hero .hero-sub{font-size:18px}}
+  @media(prefers-reduced-motion: reduce){body::before,.shooting-stars span,.hero .hero-sub::after,.hero .hero-sub .highlight{animation:none}.shooting-stars{display:none}}
+
 
   /* ===== Canva画像スタック（HERO〜PROOF/USP） ===== */
   .slide-stack{max-width:var(--maxw);margin:0 auto;background:#fff}
@@ -591,6 +610,7 @@
 </style>
 </head>
 <body>
+<div class="shooting-stars" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 
 <!-- ロード画面 -->
 <div id="loader">
@@ -647,7 +667,7 @@
         <source src="images/hero-loop.mp4" type="video/mp4">
       </video>
     </div>
-    <h1><span class="hero-title-line main">Clipart</span><span class="hero-title-line sub">ToolKit Pro</span></h1>
+    <h1>Clipart ToolKit Pro</h1>
     <p class="hero-sub">AIで作った<span class="highlight">“かわいい”</span>を、<br>Etsyで売れる商品に。</p>
     <p class="with">AIで作ったクリップアートを、商品画像・SEO・納品データまでまとめて整えるツールです。</p>
     <a class="cta" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener"><span>利用を開始する</span></a>
