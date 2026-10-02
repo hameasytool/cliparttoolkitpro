@@ -166,24 +166,25 @@
   .hero .with strong{color:var(--ink);font-weight:400}
   .hero-badge-logo{width:88px;margin:0 auto 12px}
 
-  /* ===== Hero title and sparkle motion ===== */
+  /* ===== LP全体の白い流れ星と、クリップアートのゆらゆら演出 ===== */
   body{position:relative;overflow-x:hidden}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.8px),radial-gradient(circle,rgba(201,161,90,.55) 0 1px,transparent 2px);background-size:110px 110px,170px 170px;background-position:15px 30px,80px 90px;animation:bgStarsDrift 26s linear infinite;opacity:.55}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.8px),radial-gradient(circle,rgba(255,255,255,.72) 0 1px,transparent 2px);background-size:110px 110px,170px 170px;background-position:15px 30px,80px 90px;animation:bgStarsDrift 26s linear infinite;opacity:.62}
   .site-nav,header,main,section,footer{position:relative;z-index:1}
-  .shooting-stars{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
-  .shooting-stars span{position:absolute;top:-8%;left:var(--x);width:120px;height:2px;border-radius:999px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.96),rgba(201,161,90,.85));box-shadow:0 0 12px rgba(255,255,255,.9),0 0 22px rgba(201,161,90,.35);transform:rotate(-28deg);opacity:0;animation:shootingStar var(--d) linear infinite;animation-delay:var(--delay)}
-  .shooting-stars span:nth-child(1){--x:18%;--d:7.8s;--delay:0s}.shooting-stars span:nth-child(2){--x:46%;--d:9.4s;--delay:2.6s}.shooting-stars span:nth-child(3){--x:76%;--d:8.6s;--delay:5.1s}.shooting-stars span:nth-child(4){--x:32%;--d:10.2s;--delay:7.2s}
+  .shooting-stars{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+  .shooting-stars span{position:absolute;top:-8%;left:var(--x);width:132px;height:2px;border-radius:999px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.98),rgba(255,255,255,.78));box-shadow:0 0 12px rgba(255,255,255,.95),0 0 26px rgba(255,255,255,.62);transform:rotate(-28deg);opacity:0;animation:shootingStar var(--d) linear infinite;animation-delay:var(--delay)}
+  .shooting-stars span:nth-child(1){--x:18%;--d:7.8s;--delay:0s}.shooting-stars span:nth-child(2){--x:46%;--d:9.4s;--delay:2.6s}.shooting-stars span:nth-child(3){--x:76%;--d:8.6s;--delay:5.1s}.shooting-stars span:nth-child(4){--x:32%;--d:10.2s;--delay:7.2s}.shooting-stars span:nth-child(5){--x:88%;--d:11s;--delay:9.4s}
   @keyframes shootingStar{0%{opacity:0;transform:translate3d(0,0,0) rotate(-28deg)}8%{opacity:1}32%{opacity:.95}48%,100%{opacity:0;transform:translate3d(-760px,560px,0) rotate(-28deg)}}
   @keyframes bgStarsDrift{from{background-position:15px 30px,80px 90px}to{background-position:125px 140px,250px 260px}}
-  .hero h1{font-family:"Cormorant Garamond","Zen Maru Gothic",serif;font-size:46px;line-height:1.08;margin:24px 0 18px;letter-spacing:.025em;background:none;color:#704b47;-webkit-text-fill-color:#704b47;animation:none;text-shadow:0 3px 0 rgba(255,255,255,.72),0 12px 24px rgba(201,107,133,.16);white-space:nowrap}
+  .floral-bg img:not(.hero-video):not(.hero-video-wrap img):not([src*="screenshots"]):not([src*="slides"]):not([src*="bonus-guide-promo"]){animation:clipartFloat 5.8s ease-in-out infinite;transform-origin:center bottom}
+  .floral-bg img:nth-of-type(2n){animation-duration:6.6s;animation-delay:.5s}.floral-bg img:nth-of-type(3n){animation-duration:7.2s;animation-delay:1s}
+  @keyframes clipartFloat{0%,100%{transform:translateY(0) rotate(0deg)}35%{transform:translateY(-6px) rotate(-1.4deg)}70%{transform:translateY(3px) rotate(1.1deg)}}
+  .hero h1{font-family:"Cormorant Garamond","Zen Maru Gothic",serif;font-size:46px;line-height:1.08;margin:24px 0 18px;letter-spacing:.025em;position:relative;display:inline-block;background:linear-gradient(100deg,#704b47 0%,#704b47 32%,#ffffff 45%,#c96b85 52%,#704b47 66%,#704b47 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:titleShine 3.8s ease-in-out infinite;text-shadow:0 3px 0 rgba(255,255,255,.72),0 12px 24px rgba(201,107,133,.16);white-space:nowrap}
+  .hero h1::before,.hero h1::after{content:"✦";position:absolute;color:#fff;-webkit-text-fill-color:#fff;text-shadow:0 0 10px rgba(255,255,255,.95),0 0 18px rgba(255,255,255,.7);animation:titleSparkle 1.9s ease-in-out infinite;pointer-events:none}.hero h1::before{top:-16px;left:-22px;font-size:17px}.hero h1::after{right:-24px;bottom:4px;font-size:14px;animation-delay:.8s}
   .hero .hero-sub{display:inline-block;position:relative;overflow:hidden;color:var(--ink);opacity:1;margin:4px auto 28px;font-size:22px;line-height:1.72;font-weight:900;letter-spacing:.02em;background:none;box-shadow:none;border-radius:0;padding:0;text-shadow:0 2px 0 rgba(255,255,255,.86)}
-  .hero .hero-sub::after{content:"";position:absolute;top:-20%;left:-35%;width:28%;height:140%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.85),transparent);transform:skewX(-18deg);animation:copyShine 3.2s ease-in-out infinite}
-  .hero .hero-sub .highlight{color:var(--brand-deep);-webkit-text-fill-color:var(--brand-deep);font-size:1.14em;text-shadow:0 0 12px rgba(251,214,222,.95),0 2px 0 rgba(255,255,255,.9);animation:highlightTwinkle 2.4s ease-in-out infinite}
-  @keyframes copyShine{0%,38%{left:-35%;opacity:0}50%{opacity:1}74%,100%{left:112%;opacity:0}}
-  @keyframes highlightTwinkle{0%,100%{filter:brightness(1)}50%{filter:brightness(1.22)}}
+  .hero .hero-sub::after{content:"";position:absolute;top:-20%;left:-35%;width:28%;height:140%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.85),transparent);transform:skewX(-18deg);animation:copyShine 3.2s ease-in-out infinite}.hero .hero-sub .highlight{color:var(--brand-deep);-webkit-text-fill-color:var(--brand-deep);font-size:1.14em;text-shadow:0 0 12px rgba(251,214,222,.95),0 2px 0 rgba(255,255,255,.9);animation:highlightTwinkle 2.4s ease-in-out infinite}.hero .with{font-size:14px;max-width:520px;margin-left:auto;margin-right:auto}
+  @keyframes titleShine{0%,34%{background-position:0% 50%}62%,100%{background-position:100% 50%}}@keyframes titleSparkle{0%,100%{opacity:.25;transform:scale(.72) rotate(0deg)}50%{opacity:1;transform:scale(1.18) rotate(18deg)}}@keyframes copyShine{0%,38%{left:-35%;opacity:0}50%{opacity:1}74%,100%{left:112%;opacity:0}}@keyframes highlightTwinkle{0%,100%{filter:brightness(1)}50%{filter:brightness(1.22)}}
   @media(max-width:540px){.hero h1{font-size:38px;letter-spacing:.01em}.hero .hero-sub{font-size:18px}}
-  @media(prefers-reduced-motion: reduce){body::before,.shooting-stars span,.hero .hero-sub::after,.hero .hero-sub .highlight{animation:none}.shooting-stars{display:none}}
-
+  @media(prefers-reduced-motion: reduce){body::before,.shooting-stars span,.hero h1,.hero h1::before,.hero h1::after,.hero .hero-sub::after,.hero .hero-sub .highlight,.floral-bg img{animation:none}.shooting-stars{display:none}}
 
   /* ===== Canva画像スタック（HERO〜PROOF/USP） ===== */
   .slide-stack{max-width:var(--maxw);margin:0 auto;background:#fff}
@@ -610,7 +611,7 @@
 </style>
 </head>
 <body>
-<div class="shooting-stars" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+<div class="shooting-stars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
 
 <!-- ロード画面 -->
 <div id="loader">
