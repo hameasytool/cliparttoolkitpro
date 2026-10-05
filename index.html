@@ -196,6 +196,30 @@
   .hero .with{font-size:13px;color:var(--ink);opacity:.7;margin-top:2px;margin-bottom:24px}
   .hero .with strong{color:var(--ink);font-weight:400}
   .hero-badge-logo{width:88px;margin:0 auto 12px}
+  .hero-etsy{
+    max-width:620px;margin:0 auto 24px;padding:22px 18px;
+    background:rgba(255,255,255,.68);border:1px solid rgba(227,160,172,.38);
+    border-radius:24px;box-shadow:0 14px 44px rgba(201,107,133,.14);
+    backdrop-filter:blur(4px);
+  }
+  .hero-etsy h2{font-size:25px;margin-bottom:6px}
+  .hero-etsy .lead{margin-bottom:18px}
+  .hero-etsy .whyetsy-stats{margin-bottom:10px}
+  .hero-etsy .whyetsy-box{margin-top:12px;margin-bottom:0;background:rgba(252,227,230,.72)}
+  .hero-etsy .whyetsy-note{font-size:11px;margin-top:8px}
+  .hero-tags{
+    display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px auto 24px;
+  }
+  .hero-tags span{
+    display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid rgba(201,107,133,.28);border-radius:999px;
+    background:rgba(255,255,255,.72);padding:6px 12px;
+    font-size:12px;font-weight:800;color:var(--ink);
+  }
+  @media(max-width:540px){
+    .hero-etsy{padding:20px 14px;margin-bottom:22px}
+    .hero-etsy h2{font-size:22px}
+  }
 
   /* ===== LP全体の白い流れ星と、クリップアートのゆらゆら演出 ===== */
   body{position:relative;overflow-x:hidden}
@@ -689,6 +713,28 @@
     <img class="hero-badge-logo reveal" src="images/final/hamu-mia-badge.png" alt="Hamu & Mia collaboration">
     <a class="badge" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener"><span class="badge-spark">✦</span><span class="badge-tag">日本初</span>Etsyクリップアート全自動化ツール ・ iPad対応</a>
     <br>
+    <h1>Clipart ToolKit Pro</h1>
+    <p class="hero-sub">AIで作った<span class="highlight">“かわいい”</span>を、<br>Etsyで売れる商品に。</p>
+    <p class="with">AIで作ったクリップアートを、商品画像・SEO・納品データまでまとめて整えるツールです。</p>
+    <div class="hero-tags" aria-label="サービスの特徴">
+      <span>月1,480円〜</span>
+      <span>iPad対応</span>
+      <span>初心者ガイド付き</span>
+    </div>
+    <div class="hero-etsy reveal">
+      <h2><span class="sub">ABOUT ETSY</span>Etsyって、知っていますか？</h2>
+      <p class="lead">世界中の人に、自分の作った画像を売れるマーケットです。</p>
+      <div class="whyetsy-stats reveal-stagger">
+        <div class="stat pink-card"><strong class="pop">105億ドル</strong><span><span style="white-space:nowrap">年間流通総額</span><br><span style="white-space:nowrap">（1兆円超）</span></span></div>
+        <div class="stat pink-card pink-solid"><strong class="pop">8,650万人</strong><span><span style="white-space:nowrap">世界の</span><br><span style="white-space:nowrap">アクティブバイヤー</span></span></div>
+        <div class="stat pink-card"><strong class="pop">560万人</strong><span><span style="white-space:nowrap">出店している</span><br><span style="white-space:nowrap">セラー数</span></span></div>
+      </div>
+      <p class="whyetsy-note">出典：Etsy, Inc. 2025年通期決算（investors.etsy.com）</p>
+      <div class="whyetsy-box">
+        <p>Etsyは、日本からの新規出店の受付を一時停止していた時期がありました。再開されたのは、2023年11月。</p>
+        <p style="margin-top:10px"><strong class="pop">つまり、日本人セラーの参入は、まだ始まったばかり。あなたの商品を並べるなら、今です。</strong></p>
+      </div>
+    </div>
     
     <div class="hero-video-wrap">
       <span class="hero-sparkle hs1" aria-hidden="true">✦</span>
@@ -705,33 +751,10 @@
         <input class="hero-video-progress" type="range" min="0" max="100" value="0" step="0.1" data-video-progress aria-label="動画の位置">
       </div>
     </div>
-    <h1>Clipart ToolKit Pro</h1>
-    <p class="hero-sub">AIで作った<span class="highlight">“かわいい”</span>を、<br>Etsyで売れる商品に。</p>
-    <p class="with">AIで作ったクリップアートを、商品画像・SEO・納品データまでまとめて整えるツールです。</p>
     <a class="cta" href="https://app.cliparttoolkit.com/" target="_blank" rel="noopener"><span>利用を開始する</span></a>
     <p class="cta-trust">🔒 Google認証でセキュリティも安心。</p>
   </div>
 </header>
-
-<!-- ①.5 Etsyという場所 -->
-<section class="whyetsy floral-bg">
-  <div class="wrap">
-    <h2 class="reveal"><span class="sub">ABOUT ETSY</span>Etsyって、知っていますか？</h2>
-    <p class="lead reveal">世界中の人に、自分の作った画像を売れるマーケットです。</p>
-    <img class="globe-img reveal" src="images/final/globe.png" alt="">
-    <div class="whyetsy-stats reveal-stagger">
-      <div class="stat pink-card"><strong class="pop">105億ドル</strong><span><span style="white-space:nowrap">年間流通総額</span><br><span style="white-space:nowrap">（1兆円超）</span></span></div>
-      <div class="stat pink-card pink-solid"><strong class="pop">8,650万人</strong><span><span style="white-space:nowrap">世界の</span><br><span style="white-space:nowrap">アクティブバイヤー</span></span></div>
-      <div class="stat pink-card"><strong class="pop">560万人</strong><span><span style="white-space:nowrap">出店している</span><br><span style="white-space:nowrap">セラー数</span></span></div>
-    </div>
-    <p class="whyetsy-note reveal" style="font-size:12px;margin-bottom:24px">出典：Etsy, Inc. 2025年通期決算（investors.etsy.com）</p>
-    <div class="teacat-row reveal"><img src="images/final/teacat.png" alt=""></div>
-    <div class="whyetsy-box reveal">
-      <p>Etsyは、日本からの新規出店の受付を<br>一時停止していた時期がありました。<br>再開されたのは、2023年11月。</p>
-      <p style="margin-top:10px"><strong class="pop">つまり、日本人セラーの参入は、<br>まだ始まったばかり。<br>この105億ドルの市場に、<br>あなたの商品を並べるなら、今です。</strong></p>
-    </div>
-  </div>
-</section>
 
 <!-- ②共感（PAIN） -->
 <section class="pain floral-bg">
