@@ -875,6 +875,14 @@
   #member-guides .guide-exclusive-sub{background:none;color:#a28756;-webkit-text-fill-color:currentColor;font-weight:600}
   @keyframes guideGoldSatin{0%,35%,100%{background-position:100% 50%}70%{background-position:0% 50%}}
   @media(prefers-reduced-motion:reduce){#member-guides .guide-exclusive,#member-guides .guide-exclusive strong{animation:none}}
+
+  #member-guides .guide-price>span{display:inline-block;max-width:100%;color:#a27b32;background:linear-gradient(110deg,#a27b32 22%,#bd9651 43%,#e1c48c 50%,#bd9651 57%,#a27b32 78%);background-size:230% 100%;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;animation:guidePriceGleam 10s ease-in-out infinite}
+  #member-guides .guide-price-free>span{color:#ba597b;background-image:linear-gradient(110deg,#ba597b 22%,#ce7a98 43%,#f0bccd 50%,#ce7a98 57%,#ba597b 78%)}
+  #member-guides .guide-price .guide-yen{color:inherit;-webkit-text-fill-color:inherit}
+  #member-guides .guide-item:nth-child(2) .guide-price>span{animation-delay:-3s}
+  #member-guides .guide-item:nth-child(3) .guide-price>span{animation-delay:-6s}
+  @keyframes guidePriceGleam{0%,25%,100%{background-position:100% 50%}65%{background-position:0% 50%}}
+  @media(prefers-reduced-motion:reduce){#member-guides .guide-price>span{animation:none}}
 </style>
 </head>
 <body>
