@@ -1489,8 +1489,9 @@
         box-shadow:var(--shadow-sm); overflow:hidden;
       }
       .show-stage{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); }
-      @media (max-width:760px){ .show-stage{ grid-template-columns:1fr; } }
+      @media (max-width:760px){ .show-stage{ grid-template-columns:minmax(0,1fr); } }
       .show-media{
+        min-width:0;
         position:relative; background:var(--surface-2); height:400px;
         display:flex; align-items:center; justify-content:center; overflow:hidden;
       }
@@ -1528,24 +1529,24 @@
       .show-sample .s-tags{ display:flex; flex-wrap:wrap; gap:7px; }
       .show-sample .s-tags span{ font-size:12px; font-weight:700; background:var(--surface); border:1px solid var(--line-strong); border-radius:999px; padding:4px 11px; color:var(--navy); }
       .sample-note{ position:absolute; right:12px; bottom:10px; z-index:4; font-size:11px; font-weight:700; line-height:1.4; letter-spacing:.02em; color:var(--ink-faint); background:var(--surface); padding:2px 7px; border-radius:999px; pointer-events:none; }
-      .show-info{ padding:26px 26px 22px; display:flex; flex-direction:column; }
+      .show-info{ padding:26px 26px 22px; display:flex; flex-direction:column; min-width:0; }
       .show-count{ font-size:12.5px; font-weight:900; color:var(--ink-faint); letter-spacing:.08em; margin:0 0 6px; font-variant-numeric:tabular-nums; }
       .show-name{ font-size:clamp(20px,3vw,26px); font-weight:900; color:var(--navy); margin:0 0 10px; line-height:1.4; }
       .show-desc{ font-size:14.5px; font-weight:700; color:var(--ink-soft); line-height:1.85; margin:0; white-space:pre-line; }
-      .show-nav{ margin-top:auto; padding-top:22px; display:flex; align-items:center; gap:6px; flex-wrap:nowrap; }
+      .show-nav{ margin-top:auto; padding-top:22px; display:flex; align-items:center; gap:6px; flex-wrap:nowrap; min-width:0; }
       .show-btn{
         appearance:none; cursor:pointer; font-family:inherit; font-weight:900; font-size:13.5px; flex:none;
         color:var(--navy); background:var(--surface); border:2px solid var(--navy);
         border-radius:999px; padding:8px 13px; min-height:42px; white-space:nowrap;
       }
       .show-btn:hover{ background:var(--pink); }
-      .show-dots{ display:flex; gap:1px; margin:0 auto; flex-wrap:nowrap; justify-content:center; flex:none; }
-      .show-dots button{ width:21px; height:26px; flex:none; border-radius:50%; border:0; background:transparent; display:grid; place-items:center; cursor:pointer; padding:0; }
+      .show-dots{ display:flex; gap:1px; margin:0 auto; flex-wrap:nowrap; justify-content:center; flex:1 1 auto; min-width:0; }
+      .show-dots button{ width:21px; height:26px; flex:1 1 0; min-width:0; max-width:21px; border-radius:50%; border:0; background:transparent; display:grid; place-items:center; cursor:pointer; padding:0; }
       .show-dots button i{ width:8px; height:8px; border-radius:50%; background:var(--line-strong); display:block; }
       .show-dots button.is-on i{ background:var(--red); transform:scale(1.3); }
       @media (max-width:480px){
-        .show-btn{ font-size:12.5px; padding:7px 10px; }
-        .show-dots button{ width:17px; }
+        .show-btn{ font-size:12.5px; padding:7px 9px; }
+        .show-dots button{ width:15px; max-width:15px; }
         .show-dots button i{ width:7px; height:7px; }
       }
       .show-thumbs{ display:flex; gap:7px; padding:10px 12px; border-top:1px solid var(--line); background:var(--surface-2); flex-wrap:nowrap; }
@@ -1888,23 +1889,35 @@
          <br class="prep-br-sp"> で改行位置を固定する（PCでは br を消して従来どおり） */
       .prep-br-sp{ display:none; }
       @media (max-width:760px){ .prep-br-sp{ display:inline; } }
-      /* 従来の指定は、画面幅390pxで中身の高さがフレームとぴったり同じになる詰め方で、
-         360px以下やフォントの違う端末では下段の説明文と注記がフレームの下に
-         はみ出していた。スマホでは文字・画像・余白をひと回り小さくし、
-         グリッドの行高さを行ごとに決める（grid-auto-rows:auto）＋ flex:1 で
-         余った高さをグリッドが吸収する形にして、320〜430pxのどの幅でも
-         フレーム内に余裕をもって収まるようにする。
-         横余白11%は、波型フレームの内側（端から約7.2%）より十分内側で、
-         文字が波型の縁にかからない。項目名は改行させず1行に収める */
+      /* スマホではフレームの縦横比（SVG本来の 1681/3000）を固定したまま、
+         フレーム自体を画面幅いっぱいに近く広げ（.wrap の左右20px余白のうち
+         12pxずつを負マージンで取り戻し、画面端まで約8px）、中身の文字・画像・
+         余白をすべてフレーム幅に対する割合（cqw）で指定する。
+         フォントサイズも列幅もフレーム幅に比例するため、1行に入る文字数と
+         説明文の行数がどの画面幅でもほぼ変わらず、中身の合計高さがフレームの
+         高さ（幅×3000/1681≒178.5cqw）にほぼ一致する。px の clamp で最小・最大を
+         挟むと比例が崩れて端末ごとに過不足が出るため、スマホでは clamp を使わない。
+         グリッドの行は 1fr で均等化せず自然な高さにする（行1＝説明文4行、
+         行2＝同6行。端末のフォント差・小数丸めで最長文が7行になる場合まで想定）。
+         残りの余りは .prep-grid の flex:1 と align-content:space-evenly が
+         「グリッド上／行の間／注記の前」の3か所へ均等に配るので、
+         どこか1か所に大きな空きはできない。
+         横余白11.5cqwは、波型フレームの縁が最も内側へ張り出す位置（端から約6.1%、
+         SVGのパス実測）より十分内側で、説明文の右端が波型にかからない。
+         縦の内訳（cqw）：上下余白21.5＋タイトル16.2＋サブ文12.65＋グリッド前3.0
+         ＋グリッド約99.8（行1：項目名4.68＋画像上下1.3＋画像15＋説明文4行×5.08、
+         行2：同固定部＋説明文6行×5.08、行間4.4）＋注記約15.0 ≒ 168。
+         最長文が7行になる端末でも合計は約173で、フレーム高さ178.5に収まる */
       @media (max-width:760px){
-        .prep-inner{ padding:12% 11% 9%; }
-        .prep-title{ font-size:clamp(16px, 5.2cqw, 23px); line-height:1.35; }
-        .prep-sub{ margin-top:1.2cqw; font-size:clamp(10.5px, 3.2cqw, 13.5px); line-height:1.55; }
-        .prep-grid{ margin-top:1.4cqw; flex:1; grid-auto-rows:auto; column-gap:4.2cqw; row-gap:1.2cqw; }
-        .prep-item h3{ min-height:1.3em; font-size:clamp(10.5px, 3.3cqw, 15px); line-height:1.3; white-space:nowrap; }
-        .prep-img{ margin-top:0.8cqw; height:clamp(36px, 13cqw, 60px); }
-        .prep-item p{ margin-top:0.8cqw; font-size:clamp(10.5px, 2.9cqw, 13px); line-height:1.58; }
-        .prep-note{ margin-top:1.2cqw; padding-top:1.2cqw; font-size:clamp(10px, 2.6cqw, 13px); line-height:1.55; }
+        .prep-frame{ aspect-ratio:1681 / 3000; max-width:none; margin-left:-12px; margin-right:-12px; }
+        .prep-inner{ position:absolute; inset:0; padding:11.5cqw 11.5cqw 10cqw; }
+        .prep-title{ font-size:6cqw; line-height:1.35; }
+        .prep-sub{ margin-top:1.8cqw; font-size:3.5cqw; line-height:1.55; }
+        .prep-grid{ margin-top:3cqw; flex:1; grid-auto-rows:auto; align-content:space-evenly; column-gap:4.6cqw; row-gap:4.4cqw; }
+        .prep-item h3{ min-height:1.3em; font-size:3.6cqw; line-height:1.3; white-space:nowrap; }
+        .prep-img{ margin-top:1.3cqw; height:15cqw; }
+        .prep-item p{ margin-top:1.3cqw; font-size:3.1cqw; line-height:1.64; }
+        .prep-note{ margin-top:3.2cqw; padding-top:1.9cqw; font-size:3cqw; line-height:1.55; }
       }
       /* ---------- PC：横長フレームに4項目を横一列 ---------- */
       /* 文字・余白・画像はすべてフレーム幅に対する割合（cqw）で指定する。
@@ -2110,7 +2123,10 @@
            最小幅に引っ張られて、枠だけ少し横に広がって見えたため、列を minmax(0,1fr) にして
            コンテナ幅に収め、カード内もその幅に収まるよう少しだけ詰める。
          ②改行用 <br class="points-br-sp"> はPC（761px以上）では隠し、スマホでのみ効かせる。
-           バナーは flex のままだと <br> が効かないため、スマホでは block にして2行にする */
+           ただしバナー（.points-banner）の中の <br> はスマホでも隠し、バナーは
+           改行なしの1行・中央揃えにする（従来は2行・左揃えで崩れて見えた）。
+           1行に収まるよう、スマホだけバナーの左右マージンをなくし、
+           文字も少し小さくする。ピル型のデザイン自体は変えない */
       @media (min-width:761px){
         .points-br-sp{ display:none; }
       }
@@ -2118,10 +2134,20 @@
         .points-cards{ grid-template-columns:minmax(0,1fr); }
         .points-frame, .points-card{ min-width:0; max-width:100%; }
         .use-grid{ grid-template-columns:repeat(3, minmax(0,1fr)); }
-        .points-banner{ display:block; line-height:1.4; padding:8px 16px; text-align:left; }
+        .points-banner{
+          margin:16px 0 0; padding:7px 10px;
+          flex-wrap:nowrap; white-space:nowrap;
+          font-size:13.5px; line-height:1.25;
+        }
+        .points-banner .points-br-sp{ display:none; }
+        .points-banner b{ font-size:1.5em; }
         /* 使い道カード（2枚目）の上に少し余白を追加 */
         .points-cards .points-card + .points-card{ margin-top:12px; }
         .points-year2{ line-height:1.55; }
+      }
+      /* いちばん狭い幅ではバナーの文字をもう少しだけ小さくして、確実に1行に収める */
+      @media (max-width:380px){
+        .points-banner{ font-size:12.5px; padding:7px 8px; }
       }
       @media (max-width:480px){
         .earn-name{ flex-shrink:1; flex-basis:112px; width:112px; gap:6px; font-size:14.5px; }
