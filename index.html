@@ -1883,17 +1883,28 @@
         color:var(--red); font-weight:900; text-decoration:underline;
         text-underline-offset:2px;
       }
-      /* ---------- スマホのみ：#prep 内の縦位置の微調整（PCは変更しない） ---------- */
-      /* ・タイトル〜クレジットカードの説明文まで（上の段）を少し下げる
-           → .prep-inner の上余白を広げる
-         ・Payoneerアカウント〜画像生成AIの説明文まで（下の段）を少し上げる
-           → 行間（row-gap）を詰める量が上余白の増加分より大きいので、下の段は差し引き少し上がる
-         ・点線とその下の注意書きを少し下げる
-           → 注意書きの上の余白（margin-top）を広げ、グリッドが短くなった分より大きく下げる */
+      /* ---------- スマホのみ：#prep をフレーム内に確実に収める（PCは変更しない） ---------- */
+      /* 改行位置は端末のフォント差でずれるため、タイトルとサブ文はスマホだけ
+         <br class="prep-br-sp"> で改行位置を固定する（PCでは br を消して従来どおり） */
+      .prep-br-sp{ display:none; }
+      @media (max-width:760px){ .prep-br-sp{ display:inline; } }
+      /* 従来の指定は、画面幅390pxで中身の高さがフレームとぴったり同じになる詰め方で、
+         360px以下やフォントの違う端末では下段の説明文と注記がフレームの下に
+         はみ出していた。スマホでは文字・画像・余白をひと回り小さくし、
+         グリッドの行高さを行ごとに決める（grid-auto-rows:auto）＋ flex:1 で
+         余った高さをグリッドが吸収する形にして、320〜430pxのどの幅でも
+         フレーム内に余裕をもって収まるようにする。
+         横余白11%は、波型フレームの内側（端から約7.2%）より十分内側で、
+         文字が波型の縁にかからない。項目名は改行させず1行に収める */
       @media (max-width:760px){
-        .prep-inner{ padding-top:12.5%; }
-        .prep-grid{ row-gap:0.4cqw; }
-        .prep-note{ margin-top:3cqw; }
+        .prep-inner{ padding:12% 11% 9%; }
+        .prep-title{ font-size:clamp(16px, 5.2cqw, 23px); line-height:1.35; }
+        .prep-sub{ margin-top:1.2cqw; font-size:clamp(10.5px, 3.2cqw, 13.5px); line-height:1.55; }
+        .prep-grid{ margin-top:1.4cqw; flex:1; grid-auto-rows:auto; column-gap:4.2cqw; row-gap:1.2cqw; }
+        .prep-item h3{ min-height:1.3em; font-size:clamp(10.5px, 3.3cqw, 15px); line-height:1.3; white-space:nowrap; }
+        .prep-img{ margin-top:0.8cqw; height:clamp(36px, 13cqw, 60px); }
+        .prep-item p{ margin-top:0.8cqw; font-size:clamp(10.5px, 2.9cqw, 13px); line-height:1.58; }
+        .prep-note{ margin-top:1.2cqw; padding-top:1.2cqw; font-size:clamp(10px, 2.6cqw, 13px); line-height:1.55; }
       }
       /* ---------- PC：横長フレームに4項目を横一列 ---------- */
       /* 文字・余白・画像はすべてフレーム幅に対する割合（cqw）で指定する。
@@ -2130,6 +2141,47 @@
       }
       .points-footnote{ text-align:center; font-size:13.5px; font-weight:700; color:var(--navy); margin:14px 0 0; }
       .point-note{ text-align:center; font-size:14px; font-weight:700; color:var(--ink-faint); margin:16px 0 0; }
+
+      /* ---------- スマホ幅の崩れ修正（ポイント／デモ冒頭・PCは変更しない） ---------- */
+      /* ポイント帯（.point-band）はスマホだけ左右の余白を詰めて広くし、
+         タイムライン・貯め方・使い道のすべてに横の余裕を作る */
+      @media (max-width:760px){
+        .point-band{ width:calc(100vw - 20px); margin-left:calc(50% - 50vw + 10px); padding:18px 12px; }
+        /* 使い道：項目名の高さを2行分にそろえ、赤字の数値（.u-rate）の位置を3項目でそろえる。
+           項目名の改行位置は <br class="points-br-sp"> で固定済み（単語の途中で折れない） */
+        .use-item .u-name{ min-height:calc(1.45em * 2); }
+      }
+      @media (max-width:480px){
+        /* 継続特典：ピル・丸バッジ・ポイント数が狭い幅でも枠内に収まる大きさにする
+           （従来はピルが枠の右にはみ出し、丸バッジ同士と数値同士が重なっていた） */
+        .points-pill{ font-size:14px; padding:7px 14px; }
+        .pt-circle{ width:clamp(46px, 13vw, 56px); height:clamp(46px, 13vw, 56px); }
+        .points-timeline::before{ top:calc(clamp(46px, 13vw, 56px) / 2); }
+        .pt-val{ font-size:17.5px; }
+        /* 貯め方：名前・説明・数値の合計幅がカード幅を超えないように詰める
+           （従来は「500pt」がカードの右端からはみ出し、名前が途中で折れていた） */
+        .earn-name{ flex-basis:104px; width:104px; font-size:13.5px; gap:6px; }
+        .earn-name svg{ width:24px; height:24px; }
+        .earn-val{ margin-left:4px; padding-left:9px; gap:6px; }
+        .earn-val .ev-desc{ flex-basis:66px; width:66px; font-size:11px; }
+        .earn-val .ev-pt{ font-size:21px; }
+        .earn-val .ev-pt small{ font-size:12px; }
+        /* デモ冒頭（アップロード画面）：サムネイルを3枚×2段に収め、
+           説明文と「処理スタート」ボタンが枠（430px）内に収まるようにする
+           （従来は320px幅で上下が枠からはみ出して切れていた） */
+        .scene-idle{ padding:10px; }
+        .upload-area{ padding:16px 10px 20px; }
+        .upload-item{ width:62px; height:62px; }
+        .upload-thumbs{ gap:9px; }
+        .upload-text{ font-size:15.5px; margin:16px 0 14px; }
+        .idle-start-btn{ font-size:17px; padding:12px 30px; min-height:50px; }
+      }
+      /* 使い道：いちばん狭い幅では項目名と数値を少し小さくして、3列とも列内に収める */
+      @media (max-width:400px){
+        .use-item{ padding:0 2px; }
+        .use-item .u-name{ font-size:11px; letter-spacing:-.02em; }
+        .use-item .u-rate{ font-size:13px; }
+      }
 
       /* ---------- 料金 ---------- */
       /* 料金プランの背景／パネル（旧・コスト比較と入れ替え）：
@@ -2924,7 +2976,7 @@
         <div class="sec-head">
           <span class="demo-title-wrap"><img class="demo-title-icon" src="assets/play-laptop-icon.svg" alt="" aria-hidden="true" /><h2 class="sec-title">ツールを使った制作の流れ</h2></span>
         </div>
-        <p class="demo-lead">AIイラストが商品になるまでを、<b>約20秒のデモ</b>でお見せします。</p>
+        <p class="demo-lead">AIイラストが商品になるまでを、<br class="sp-br" /><b>約20秒のデモ</b>でお見せします。</p>
         <div class="demo-steps" aria-label="デモの流れ">
           <span><b>1</b> AIイラストをアップロード</span><i>→</i>
           <span><b>2</b> 出品に必要なものを自動で作成</span><i>→</i>
@@ -3402,8 +3454,8 @@
           <img class="prep-frame-img prep-frame-img-pc" src="assets/frame-wide.svg" alt="" aria-hidden="true" />
           <img class="prep-frame-img prep-frame-img-sp" src="assets/frame-wavy-mobile.svg" alt="" aria-hidden="true" />
           <div class="prep-inner">
-            <h2 class="prep-title">Etsyショップ開設に必要なもの</h2>
-            <p class="prep-sub">始める前に、まずはこの4つを準備しましょう。</p>
+            <h2 class="prep-title">Etsyショップ開設に<br class="prep-br-sp" />必要なもの</h2>
+            <p class="prep-sub">始める前に、まずはこの4つを<br class="prep-br-sp" />準備しましょう。</p>
             <div class="prep-grid">
               <div class="prep-item">
                 <h3>Gmailアドレス</h3>
@@ -3650,12 +3702,12 @@
               <div class="use-grid">
                 <div class="use-item">
                   <svg class="pt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11.5C5 8.6 8.1 6.8 12 6.8s7 1.8 7 4.7V17a3.5 3.5 0 0 1-3.5 3.5h-7A3.5 3.5 0 0 1 5 17z"/><path d="M5 11.5h14"/><path d="M9.7 6.7 9.4 4.9M14.3 6.7l.3-1.8"/><circle cx="9.3" cy="4.4" r="1.1"/><circle cx="14.7" cy="4.4" r="1.1"/></svg>
-                  <p class="u-name">次回のお支払い割引</p>
+                  <p class="u-name">次回のお支払い<br class="points-br-sp" />割引</p>
                   <p class="u-rate">1 pt = 1 円</p>
                 </div>
                 <div class="use-item">
                   <svg class="pt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4.5 17.5 9 13.5l3.5 3 3-2.5 4 3.5"/></svg>
-                  <p class="u-name">追加の自動処理</p>
+                  <p class="u-name">追加の自動<br class="points-br-sp" />処理</p>
                   <p class="u-rate">4 pt = 1 枚</p>
                 </div>
                 <div class="use-item">
