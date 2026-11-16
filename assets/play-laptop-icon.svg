@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" fill="none">
+  <g fill="#C8102E">
+    <!-- screen frame -->
+    <rect x="106" y="128" width="300" height="190" rx="28" ry="28"/>
+    <rect x="130" y="152" width="252" height="142" rx="16" ry="16" fill="white"/>
+
+    <!-- play icon -->
+    <path d="M232 201c0-12 13-19 23-12l55 34c10 6 10 20 0 26l-55 34c-10 6-23 0-23-12z"/>
+
+    <!-- base -->
+    <path d="M90 318h332c14 0 23 15 17 27-10 22-31 37-55 37H128c-24 0-45-15-55-37-6-12 3-27 17-27z"/>
+    <rect x="232" y="327" width="48" height="13" rx="6.5" ry="6.5" fill="white"/>
+  </g>
+</svg>
