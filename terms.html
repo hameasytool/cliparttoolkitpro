@@ -1,52 +1,250 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>利用規約｜Clipart ToolKit Pro</title>
-<meta name="robots" content="noindex">
-<style>
-  :root{
-    --bg:#fff9fb; --surface:#ffffff; --ink:#4a3b42; --ink-soft:#8a7a82;
-    --brand:#f5a6c4; --brand-deep:#e97fa8; --cream:#fff2f6; --line:#f3dde5;
-    --radius:16px; --maxw:720px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic",-apple-system,system-ui,sans-serif;
-    color:var(--ink); background:var(--bg); line-height:1.9; font-size:16px;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-  header{background:var(--cream);padding:28px 0;margin-bottom:36px}
-  header .back{display:inline-block;font-size:13px;color:var(--brand-deep);text-decoration:none;margin-bottom:10px}
-  header .back:hover{text-decoration:underline}
-  h1{font-size:22px;line-height:1.5}
-  main{padding-bottom:56px}
-  .intro{background:var(--surface);border-radius:var(--radius);padding:20px 22px;margin-bottom:28px;font-size:15px}
-  h2{font-size:17px;margin:32px 0 10px;padding-bottom:8px;border-bottom:2px solid var(--line);color:var(--brand-deep)}
-  ol{padding-left:1.4em;margin-top:6px}
-  ol li{margin-bottom:8px;font-size:15px}
-  ul{padding-left:1.4em;margin-top:6px}
-  ul li{margin-bottom:6px;font-size:15px}
-  p{font-size:15px;margin-top:6px}
-  .date{margin-top:40px;font-size:14px;color:var(--ink-soft);text-align:right}
-  .fill{background:#fff3b0;padding:2px 8px;border-radius:4px;font-weight:700;color:#7a5c00}
-  footer{background:var(--ink);color:#fff;text-align:center;padding:28px 20px;font-size:13px}
-  footer a{color:#fff;text-decoration:underline;margin:0 8px}
-</style>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <title>利用規約｜Clipart ToolKit Pro</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root{
+        --bg:#FFF9EE;
+        --bg-band:#FDEBD9;
+        --surface:#FFFEF9;
+        --surface-2:#FFF1E6;
+        --ink:#22335E;
+        --ink-soft:#4A5B8A;
+        --ink-faint:#8593B5;
+        --line:#F2C4CD;
+        --line-strong:#E79FB0;
+        --orange:#D21F3C;
+        --orange-dark:#B30F2B;
+        --orange-soft:#FDE3E8;
+        --orange-ink:#A50E28;
+        --red:#C8102E;
+        --red-dark:#9E0B24;
+        --navy:#22335E;
+        --pink:#FBDCE3;
+        --pink-deep:#F6B8C6;
+        --yellow:#FCE38A;
+        --cream:#FFF9EE;
+        --grid-line:rgba(216,90,120,.20);
+        color-scheme: light;
+      }
 
-<header>
-  <div class="wrap">
-    <a class="back" href="index.html">← Clipart ToolKit Pro トップへ</a>
-    <h1>利用規約</h1>
-  </div>
-</header>
+      *{ box-sizing:border-box; }
+      html{ scroll-behavior:smooth; color-scheme: light; background:#FFF9EE; }
+      body{
+        margin:0; background:#FFF9EE; color:#22335E; color-scheme: light;
+        font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans",system-ui,sans-serif;
+        font-weight:500; line-height:1.75; -webkit-font-smoothing:antialiased;
+      }
+      img{ display:block; max-width:100%; }
+      :root{ --header-h:64px; }
+      html{ scroll-padding-top:calc(var(--header-h) + 14px); }
+      body{ padding-top:var(--header-h); }
+      .site-header{
+        position:fixed; top:0; left:0; right:0; z-index:150;
+        background:var(--cream);
+        border-bottom:3px solid var(--red);
+        box-shadow:0 4px 14px rgba(120,30,50,.10);
+      }
+      .site-header-inner{
+        max-width:none; margin:0; padding:0 12px;
+        height:var(--header-h);
+        display:flex; align-items:center; gap:10px;
+      }
+      .site-logo{
+        display:inline-flex; align-items:center; gap:8px; flex:none;
+        text-decoration:none; line-height:1.15;
+      }
+      .site-logo .logo-text{
+        font-size:17.5px; font-weight:900; letter-spacing:.01em; color:var(--navy); white-space:nowrap;
+      }
+      .site-logo .logo-spark{
+        color:var(--red);
+      }
+      .site-nav{ display:flex; align-items:center; gap:4px; margin-left:auto; }
+      .site-nav a{
+        font-size:14px; font-weight:900; color:var(--navy); text-decoration:none;
+        padding:8px 14px; border-radius:999px; white-space:nowrap; line-height:1.3;
+        transition:background .15s ease, color .15s ease;
+      }
+      .site-nav a:hover{ background:var(--pink); color:var(--red-dark); }
+      .site-cta{
+        flex:none; display:inline-flex; align-items:center; justify-content:center;
+        font-size:14.5px; font-weight:900; letter-spacing:.03em; text-decoration:none;
+        color:#fff; background:var(--red);
+        border-radius:999px; padding:9px 20px; min-height:42px; margin-left:8px;
+        box-shadow:0 6px 16px rgba(200,16,46,.28), inset 0 -2px 0 rgba(0,0,0,.16);
+        transition:background .2s ease, transform .15s ease;
+      }
+      .site-cta:hover{ background:var(--red-dark); transform:translateY(-1px); }
+      .site-menu-btn{
+        display:none; flex:none; margin-left:8px;
+        width:44px; height:44px; min-height:44px; border-radius:12px;
+        border:2px solid var(--navy); background:var(--surface);
+        cursor:pointer; padding:0;
+        flex-direction:column; align-items:center; justify-content:center; gap:5px;
+      }
+      .site-menu-btn .bar{
+        display:block; width:20px; height:2.5px; border-radius:2px; background:var(--navy);
+        transition:transform .2s ease, opacity .2s ease;
+      }
+      .site-menu-btn[aria-expanded="true"] .bar:nth-child(1){ transform:translateY(7.5px) rotate(45deg); }
+      .site-menu-btn[aria-expanded="true"] .bar:nth-child(2){ opacity:0; }
+      .site-menu-btn[aria-expanded="true"] .bar:nth-child(3){ transform:translateY(-7.5px) rotate(-45deg); }
+      .site-mobile-nav{
+        border-top:2px dotted var(--pink-deep);
+        padding:8px 12px 16px;
+        max-width:none; margin:0;
+      }
+      .site-mobile-nav[hidden]{ display:none; }
+      .site-mobile-nav a.mnav-link{
+        display:block; font-size:15.5px; font-weight:900; color:var(--navy); text-decoration:none;
+        padding:11px 6px; border-bottom:2px dotted var(--pink-deep); line-height:1.4;
+      }
+      .site-mobile-nav a.mnav-link:active{ color:var(--red-dark); }
+      .site-mobile-nav .site-cta{ display:flex; margin:14px 0 2px; min-height:50px; font-size:16px; }
+      @media (max-width:1060px){
+        .site-nav, .site-header-inner .site-cta{ display:none; }
+        .site-menu-btn{ display:inline-flex; }
+        .site-header-inner{ gap:6px; }
+      }
+      @media (max-width:480px){
+        :root{ --header-h:58px; }
+        .site-logo .logo-text{ font-size:16px; }
+        .site-header-inner{ padding:0 12px; }
+        .site-mobile-nav{ padding:6px 12px 14px; }
+      }
+      /* スマホ：ヘッダーの「申し込む」ボタンを表示し、右上に配置する（PCは変更なし）。
+         ロゴは左のまま、「申し込む」を左、ハンバーガーボタンを右端に置く */
+      @media (max-width:760px){
+        .site-logo{ order:1; }
+        .site-header-inner .site-cta{
+          display:inline-flex; order:2; margin-left:auto;
+          font-size:13px; padding:8px 13px; min-height:38px;
+        }
+        .site-menu-btn{ order:3; margin-left:6px; width:40px; height:40px; min-height:40px; }
+      }
+      @media (max-width:380px){
+        .site-logo .logo-text{ font-size:14.5px; }
+        .site-header-inner .site-cta{ font-size:12.5px; padding:7px 10px; }
+        .site-menu-btn{ width:38px; height:38px; min-height:38px; }
+      }
+      @media (prefers-reduced-motion: reduce){
+        .site-menu-btn .bar, .site-cta, .site-nav a{ transition:none; }
+      }
+      .lp-footer{ margin-top:24px; text-align:center; padding-bottom:10px; }
+      .lp-footer-links{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 26px; }
+      .lp-footer-link{
+        background:none; border:0; padding:4px 2px; cursor:pointer;
+        font-family:inherit; font-size:13px; font-weight:700; color:var(--ink-soft);
+        text-decoration:underline; text-underline-offset:3px;
+      }
+      .lp-footer-link:hover{ color:var(--red-dark); }
+      .lp-footer-link:focus-visible{ outline:3px solid var(--navy); outline-offset:2px; border-radius:4px; }
+      .lp-footer-copy{ font-size:12.5px; font-weight:700; color:var(--ink-faint); margin:10px 0 0; }
 
-<main>
-<div class="wrap">
+      /* ---------- 法務ページ ---------- */
+      .legal-head{ background:#FDEEF1; border-bottom:3px solid var(--pink-deep); padding:28px 0 26px; }
+      .legal-head .wrap{ max-width:760px; margin:0 auto; padding:0 20px; }
+      .legal-head .back{
+        display:inline-block; font-size:13.5px; font-weight:700; color:var(--red);
+        text-decoration:none; margin-bottom:10px;
+      }
+      .legal-head .back:hover{ text-decoration:underline; color:var(--red-dark); }
+      .legal-head h1{ font-size:clamp(21px,4vw,27px); line-height:1.5; font-weight:900; color:var(--red); margin:0; letter-spacing:.02em; }
+      .legal-main{ padding:36px 0 56px; }
+      .legal-main .wrap{ max-width:760px; margin:0 auto; padding:0 20px; }
+      .legal-main .panel{
+        background:var(--surface); border:2px solid var(--line); border-radius:22px;
+        box-shadow:0 10px 26px rgba(120,30,50,.08); padding:28px 30px;
+      }
+      @media (max-width:640px){ .legal-main .panel{ padding:22px 18px; } }
+      .legal-main h2{
+        font-size:17px; font-weight:900; color:var(--red);
+        margin:32px 0 10px; padding-bottom:8px; border-bottom:2px solid var(--pink);
+      }
+      .legal-main h2:first-child{ margin-top:0; }
+      .legal-main h3{ font-size:15px; font-weight:900; color:var(--navy); margin:18px 0 4px; }
+      .legal-main p{ font-size:15px; margin-top:6px; }
+      .legal-main ol{ padding-left:1.4em; margin-top:6px; }
+      .legal-main ol li{ margin-bottom:8px; font-size:15px; }
+      .legal-main ul{ padding-left:1.4em; margin-top:6px; }
+      .legal-main ul li{ margin-bottom:6px; font-size:15px; }
+      .legal-main .intro{
+        background:var(--surface-2); border:2px solid var(--line); border-radius:16px;
+        padding:20px 22px; margin-bottom:28px; font-size:15px;
+      }
+      .legal-main .note{ font-size:13px; color:var(--ink-soft); margin-top:6px; }
+      .legal-main .fill{ background:#FFF3B0; padding:2px 8px; border-radius:4px; font-weight:700; color:#7A5C00; }
+      .legal-main .date{ margin-top:40px; font-size:14px; color:var(--ink-soft); text-align:right; }
+      .legal-main .box{
+        background:var(--surface); border:2px solid var(--line); border-radius:16px;
+        padding:18px 20px; margin-top:12px;
+      }
+      .legal-main .box h3{ margin-top:0; color:var(--red); }
+      .legal-main .highlight{
+        background:var(--pink); border-radius:16px; padding:18px 20px; margin-top:16px; font-size:15px;
+      }
+      .legal-main .highlight strong{ color:var(--red); }
+      .legal-main table{ width:100%; border-collapse:collapse; background:var(--surface); border-radius:16px; overflow:hidden; }
+      .legal-main th, .legal-main td{ text-align:left; padding:16px 18px; border-bottom:1px solid var(--line); vertical-align:top; font-size:15px; }
+      .legal-main th{ width:34%; background:var(--pink); font-weight:900; white-space:nowrap; color:var(--navy); }
+      .legal-main tr:last-child th, .legal-main tr:last-child td{ border-bottom:none; }
+      .legal-main td ul{ margin:0; padding-left:1.2em; }
+      .legal-main td li{ margin-bottom:4px; }
+      @media (max-width:520px){
+        .legal-main th, .legal-main td{ display:block; width:100%; }
+        .legal-main th{ border-bottom:none; padding-bottom:6px; }
+        .legal-main td{ padding-top:0; }
+      }
+      .legal-main a{ color:var(--red); }
+      .legal-main a:hover{ color:var(--red-dark); }
+    </style>
+  </head>
+  <body>
+    <!-- ===== 固定ヘッダー ===== -->
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="site-logo" href="index.html" aria-label="Clipart ToolKit Pro（トップへ）">
+          <span class="logo-text"><span class="logo-spark" aria-hidden="true">✦</span> Clipart ToolKit Pro <span class="logo-spark" aria-hidden="true">✦</span></span>
+        </a>
+        <nav class="site-nav" aria-label="ページ内メニュー">
+          <a href="index.html#demo">デモ</a>
+          <a href="index.html#price">料金</a>
+          <a href="index.html#faq">よくある質問</a>
+        </nav>
+        <a class="site-cta" href="https://app.cliparttoolkit.com" target="_blank" rel="noopener">申し込む</a>
+        <button type="button" class="site-menu-btn" id="siteMenuBtn" aria-expanded="false" aria-controls="siteMobileNav" aria-label="メニューを開く">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav class="site-mobile-nav" id="siteMobileNav" aria-label="ページ内メニュー（モバイル）" hidden>
+        <a class="mnav-link" href="index.html#demo">デモ</a>
+        <a class="mnav-link" href="index.html#price">料金</a>
+        <a class="mnav-link" href="index.html#faq">よくある質問</a>
+        <a class="site-cta" href="https://app.cliparttoolkit.com" target="_blank" rel="noopener">申し込む</a>
+      </nav>
+    </header>
+
+    <div class="legal-head">
+      <div class="wrap">
+        <a class="back" href="index.html">← Clipart ToolKit Pro トップへ</a>
+        <h1>利用規約</h1>
+      </div>
+    </div>
+
+    <main class="legal-main">
+      <div class="wrap">
+        <div class="panel">
+
 
 <div class="intro">
   この利用規約（以下「本規約」）は、Clipart ToolKit（以下「当方」）が提供する
@@ -157,19 +355,41 @@
 
 <p class="date">制定日：2026年8月9日<br>改定日：2026年8月27日（第5条にプラン変更の取り扱いを追記）</p>
 
-</div>
-</main>
+        </div>
+      </div>
+    </main>
 
-<footer>
-  <p>
-    <a href="index.html">トップ</a>
-    <a href="tokushoho.html">特定商取引法に基づく表記</a>
-    <a href="terms.html">利用規約</a>
-    <a href="privacy.html">プライバシーポリシー</a>
-  </p>
-  <p style="margin-top:12px">© <span id="y"></span> Clipart ToolKit Pro</p>
-</footer>
+      <footer class="lp-footer">
+        <nav class="lp-footer-links" aria-label="フッターリンク">
+          <a class="lp-footer-link" href="tokushoho.html">特定商取引法に基づく表記</a>
+          <a class="lp-footer-link" href="terms.html">利用規約</a>
+          <a class="lp-footer-link" href="privacy.html">プライバシーポリシー</a>
+        </nav>
+        <p class="lp-footer-copy">© 2026 Clipart ToolKit Pro</p>
+      </footer>
 
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
-</body>
+  <script>
+  /* ---------- 固定ヘッダー：スマホ用ハンバーガーメニュー ---------- */
+  (function () {
+    var btn = document.getElementById('siteMenuBtn');
+    var nav = document.getElementById('siteMobileNav');
+    if (!btn || !nav) return;
+    function setOpen(open) {
+      nav.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    }
+    btn.addEventListener('click', function () { setOpen(nav.hidden); });
+    Array.prototype.forEach.call(nav.querySelectorAll('a'), function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Escape' || e.key === 'Esc') && !nav.hidden) { setOpen(false); btn.focus(); }
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 1060 && !nav.hidden) setOpen(false);
+    });
+  })();
+  </script>
+  </body>
 </html>
