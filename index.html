@@ -1377,6 +1377,11 @@
           font-size:clamp(18px,5.5vw,26px); letter-spacing:.01em; white-space:nowrap;
         }
         .clipart-band .about-p{ font-size:15px; }
+        /* スマホのみ：「クリップアートってなに？」「Etsyってなに？」の説明文
+           （.about-lead と .about-p の各2段落）を中央揃えにする。
+           ピル・統計・出典・画像など他の要素は対象外 */
+        .clipart-band .about-lead,
+        .clipart-band .about-p{ text-align:center; }
         .clipart-pill{ font-size:16px; padding:15px 18px; }
         /* スマホのみ：「✦ クリップアートってなに？ ✦」「✦ Etsyってなに？ ✦」の
            上下の余白を減らす。セクション上余白 56px→28px、下余白 52px→28px、
@@ -2934,7 +2939,7 @@
           <div class="clipart-layout">
             <figure class="clipart-fig"><img src="assets/what-collage.png" alt="「Trick or Treat」クリップアートのシート、イラストを使った招待状とロンパースのモックアップ、赤い矢印、猫の女の子・黒猫とかぼちゃ・コウモリ・カップケーキの単体イラストをまとめたコラージュ画像" width="2500" height="1350" /></figure>
             <div class="about-body">
-              <p class="about-lead">商品のデザインなどに<br /><span class="red">そのまま使える、<br />デジタルのイラスト素材</span>のことです。</p>
+              <p class="about-lead">商品のデザインなどに<br />そのまま使える、<br /><span class="red">デジタルのイラスト素材</span>のことです。</p>
               <p class="about-p">海外では、個人クリエイターの素材を買って<br />商品づくりに使うことが定番。</p>
               <p class="clipart-pill">海外には、<span class="navy">なんと</span><span class="red">月商100万円前後</span>の<br />クリップアートショップも！</p>
             </div>
